@@ -6,10 +6,8 @@ TOUCH := $(PYTHON) -c 'import sys; from pathlib import Path; Path(sys.argv[1]).t
 poetry.lock: pyproject.toml
 	poetry lock
 
-# Build venv with both conda and python deps.
+# Build venv with python deps.
 $(VENV): environment.yml
-	@echo Installing Conda environment
-	@conda env update --prefix $@ --prune --file $^
 	@echo Installing Poetry environment
 	@poetry install
 	@$(TOUCH) $@
@@ -49,12 +47,11 @@ build:
 
 .PHONY: publish
 publish:
+	@poetry config pypi-token.pypi $(PYPI_TOKEN)
 	@echo Publishing: Dry run
-	@poetry config repositories.test-pypi https://test.pypi.org/legacy/
-	@poetry config pypi-token.test-pypi $(PYPI_TOKEN)
-	@poetry publish --repository test-pypi --dry-run
+	@poetry publish --dry-run
 	@echo Publishing
-	@poetry publish --repository test-pypi
+	@poetry publish
 
 .PHONY: clean
 clean:

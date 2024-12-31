@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "changeme"
+name = "pytest-docker-xrun"
 version = "0.0.0"
-description = "changeme"
-authors = ["changeme"]
+description = "Pytest fixture to run docker across test runs."
+authors = ["Marc Tardif"]
 readme = "README.rst"
-repository = "https://github.com/cr3/changeme"
+repository = "https://github.com/cr3/pytest-docker-xrun"
 packages = [
-    { include = "changeme" },
+    { include = "pytest_docker_xrun" },
 ]
 
 [tool.poetry.dependencies]
@@ -99,7 +99,7 @@ addopts = [
     "--doctest-glob=*.rst",
 ]
 testpaths = [
-    "changeme",
+    "pytest_docker_xrun",
     "docs",
     "tests",
 ]
@@ -108,7 +108,7 @@ testpaths = [
 #   https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.paths]
 source = [
-    "changeme",
+    "pytest_docker_xrun",
     "*/*/site-packages",
 ]
 
@@ -120,5 +120,5 @@ show_missing = true
 branch = true
 parallel = true
 source = [
-    "changeme",
+    "pytest_docker_xrun",
 ]

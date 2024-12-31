@@ -1,5 +1,7 @@
-modules
-=======
+pytest_docker_xrun
+==================
 
-..
-    Generate this file with ``sphinx-apidoc --force --implicit-namespaces -o docs changeme``
+.. toctree::
+   :maxdepth: 4
+
+   pytest_docker_xrun

@@ -8,9 +8,9 @@ from importlib.metadata import distribution
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "changeme"
-copyright = "2023, changeme"  # noqa: A001
-author = "changeme"
+project = "pytest-docker-xrun"
+copyright = "2024, Marc Tardif"  # noqa: A001
+author = "Marc Tardif"
 version = release = distribution(project).version
 
 # -- General configuration ---------------------------------------------------
