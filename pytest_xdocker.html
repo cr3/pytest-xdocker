@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to contribute" href="contributing.html" />
+    <link rel="prev" title="pytest_xdocker" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pytest-xdocker
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytest_xdocker</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pytest_xdocker package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.cache">pytest_xdocker.cache module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.Cache"><code class="docutils literal notranslate"><span class="pre">Cache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.CacheError"><code class="docutils literal notranslate"><span class="pre">CacheError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.FileCache"><code class="docutils literal notranslate"><span class="pre">FileCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.MemoryCache"><code class="docutils literal notranslate"><span class="pre">MemoryCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.NullCache"><code class="docutils literal notranslate"><span class="pre">NullCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.cache_decode"><code class="docutils literal notranslate"><span class="pre">cache_decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.cache.cache_encode"><code class="docutils literal notranslate"><span class="pre">cache_encode()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.command">pytest_xdocker.command module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.Command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.OptionalArg"><code class="docutils literal notranslate"><span class="pre">OptionalArg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.PositionalArg"><code class="docutils literal notranslate"><span class="pre">PositionalArg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.arg_type"><code class="docutils literal notranslate"><span class="pre">arg_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.args_type"><code class="docutils literal notranslate"><span class="pre">args_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.const_type"><code class="docutils literal notranslate"><span class="pre">const_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.empty_type"><code class="docutils literal notranslate"><span class="pre">empty_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.command.script_to_command"><code class="docutils literal notranslate"><span class="pre">script_to_command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.docker">pytest_xdocker.docker module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerBuildCommand"><code class="docutils literal notranslate"><span class="pre">DockerBuildCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerCommand"><code class="docutils literal notranslate"><span class="pre">DockerCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerContainer"><code class="docutils literal notranslate"><span class="pre">DockerContainer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerExecCommand"><code class="docutils literal notranslate"><span class="pre">DockerExecCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerImage"><code class="docutils literal notranslate"><span class="pre">DockerImage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerImageDigest"><code class="docutils literal notranslate"><span class="pre">DockerImageDigest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerImageId"><code class="docutils literal notranslate"><span class="pre">DockerImageId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerImageTag"><code class="docutils literal notranslate"><span class="pre">DockerImageTag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerInspect"><code class="docutils literal notranslate"><span class="pre">DockerInspect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerLogsCommand"><code class="docutils literal notranslate"><span class="pre">DockerLogsCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerNetworkInspect"><code class="docutils literal notranslate"><span class="pre">DockerNetworkInspect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerPortCommand"><code class="docutils literal notranslate"><span class="pre">DockerPortCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerPullCommand"><code class="docutils literal notranslate"><span class="pre">DockerPullCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerRemoveCommand"><code class="docutils literal notranslate"><span class="pre">DockerRemoveCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerRunCommand"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerText"><code class="docutils literal notranslate"><span class="pre">DockerText</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.Dockerfile"><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.Dockerignore"><code class="docutils literal notranslate"><span class="pre">Dockerignore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.docker_env_type"><code class="docutils literal notranslate"><span class="pre">docker_env_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.docker_xrun">pytest_xdocker.docker_xrun module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.wait_ppid"><code class="docutils literal notranslate"><span class="pre">wait_ppid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.fixtures">pytest_xdocker.fixtures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.fixtures.process"><code class="docutils literal notranslate"><span class="pre">process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.fixtures.pytest_addoption"><code class="docutils literal notranslate"><span class="pre">pytest_addoption()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.fixtures.pytest_runtest_makereport"><code class="docutils literal notranslate"><span class="pre">pytest_runtest_makereport()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.lock">pytest_xdocker.lock module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.AlreadyLockedError"><code class="docutils literal notranslate"><span class="pre">AlreadyLockedError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.BaseLock"><code class="docutils literal notranslate"><span class="pre">BaseLock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.FileLock"><code class="docutils literal notranslate"><span class="pre">FileLock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.MemoryLock"><code class="docutils literal notranslate"><span class="pre">MemoryLock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.NotLockedError"><code class="docutils literal notranslate"><span class="pre">NotLockedError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.NullLock"><code class="docutils literal notranslate"><span class="pre">NullLock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.lock"><code class="docutils literal notranslate"><span class="pre">lock()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.lock.unlock"><code class="docutils literal notranslate"><span class="pre">unlock()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.network">pytest_xdocker.network module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.network.get_host_ip"><code class="docutils literal notranslate"><span class="pre">get_host_ip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.network.get_open_port"><code class="docutils literal notranslate"><span class="pre">get_open_port()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.process">pytest_xdocker.process module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.Process"><code class="docutils literal notranslate"><span class="pre">Process</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.ProcessConfig"><code class="docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.ProcessData"><code class="docutils literal notranslate"><span class="pre">ProcessData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.ProcessInfo"><code class="docutils literal notranslate"><span class="pre">ProcessInfo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.ProcessServer"><code class="docutils literal notranslate"><span class="pre">ProcessServer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.get_process_dir"><code class="docutils literal notranslate"><span class="pre">get_process_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.get_root_dir"><code class="docutils literal notranslate"><span class="pre">get_root_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.process.pytest_cache_config_compat"><code class="docutils literal notranslate"><span class="pre">pytest_cache_config_compat</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.retry">pytest_xdocker.retry module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.Calling"><code class="docutils literal notranslate"><span class="pre">Calling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.CatchingProbe"><code class="docutils literal notranslate"><span class="pre">CatchingProbe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.Poller"><code class="docutils literal notranslate"><span class="pre">Poller</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.Probe"><code class="docutils literal notranslate"><span class="pre">Probe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.ProbeResult"><code class="docutils literal notranslate"><span class="pre">ProbeResult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.Retry"><code class="docutils literal notranslate"><span class="pre">Retry</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.UntilProbe"><code class="docutils literal notranslate"><span class="pre">UntilProbe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.calling"><code class="docutils literal notranslate"><span class="pre">calling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.retry"><code class="docutils literal notranslate"><span class="pre">retry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.retry.retry_catching"><code class="docutils literal notranslate"><span class="pre">retry_catching()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.validators">pytest_xdocker.validators module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.validators.matches"><code class="docutils literal notranslate"><span class="pre">matches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pytest-xdocker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pytest_xdocker</a></li>
+      <li class="breadcrumb-item active">pytest_xdocker package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pytest_xdocker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytest-xdocker-package">
+<h1>pytest_xdocker package<a class="headerlink" href="#pytest-xdocker-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pytest_xdocker.cache">
+<span id="pytest-xdocker-cache-module"></span><h2>pytest_xdocker.cache module<a class="headerlink" href="#module-pytest_xdocker.cache" title="Permalink to this heading"></a></h2>
+<p>Cache providers.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.Cache">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">Cache</span></span><a class="headerlink" href="#pytest_xdocker.cache.Cache" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for cache providers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.Cache.get">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.Cache.get" title="Permalink to this definition"></a></dt>
+<dd><p>Return cached value for the given key or the default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.Cache.set">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.Cache.set" title="Permalink to this definition"></a></dt>
+<dd><p>Save value for the given key.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.CacheError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">CacheError</span></span><a class="headerlink" href="#pytest_xdocker.cache.CacheError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised with an unexpected cache error occurs.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.FileCache">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">FileCache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cachedir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encode=&lt;function</span> <span class="pre">cache_encode&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode=&lt;function</span> <span class="pre">cache_decode&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.FileCache" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.cache.Cache" title="pytest_xdocker.cache.Cache"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cache</span></code></a></p>
+<p>Lightweight implementation of <cite>pytest.cache</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – Base path to cache directory.</p></li>
+<li><p><strong>encode</strong> – Encoding function, defaults to <cite>cache_encode</cite></p></li>
+<li><p><strong>decode</strong> – Decoding function, defaults to <cite>cache_decode</cite></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.FileCache.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><a class="headerlink" href="#pytest_xdocker.cache.FileCache.decode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.FileCache.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><a class="headerlink" href="#pytest_xdocker.cache.FileCache.encode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.FileCache.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.FileCache.get" title="Permalink to this definition"></a></dt>
+<dd><p>Read from file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.FileCache.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.FileCache.set" title="Permalink to this definition"></a></dt>
+<dd><p>Write to file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.MemoryCache">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">MemoryCache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.MemoryCache" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.cache.Cache" title="pytest_xdocker.cache.Cache"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cache</span></code></a></p>
+<p>Memory cache.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.MemoryCache.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.MemoryCache.get" title="Permalink to this definition"></a></dt>
+<dd><p>Read from dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.MemoryCache.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.MemoryCache.set" title="Permalink to this definition"></a></dt>
+<dd><p>Write the value to dict.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.NullCache">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">NullCache</span></span><a class="headerlink" href="#pytest_xdocker.cache.NullCache" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.cache.Cache" title="pytest_xdocker.cache.Cache"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cache</span></code></a></p>
+<p>Null cache.</p>
+<p>This cache never sets a value and always gets the default value.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.NullCache.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.NullCache.get" title="Permalink to this definition"></a></dt>
+<dd><p>Noop.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.NullCache.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.NullCache.set" title="Permalink to this definition"></a></dt>
+<dd><p>Noop.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.cache_decode">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">cache_decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.cache_decode" title="Permalink to this definition"></a></dt>
+<dd><p>Deserialize cache payload.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.cache.cache_encode">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.cache.</span></span><span class="sig-name descname"><span class="pre">cache_encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.cache.cache_encode" title="Permalink to this definition"></a></dt>
+<dd><p>Serialize cache payload.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.command">
+<span id="pytest-xdocker-command-module"></span><h2>pytest_xdocker.command module<a class="headerlink" href="#module-pytest_xdocker.command" title="Permalink to this heading"></a></h2>
+<p>Module to build shell commands declaratively.</p>
+<p>A Command instance can be used to build a shell command:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">command</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The command can then be executed later:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></p>
+<p>Manages a shell command.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command.execute" title="Permalink to this definition"></a></dt>
+<dd><p>Run the command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command.reparent">
+<span class="sig-name descname"><span class="pre">reparent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command.reparent" title="Permalink to this definition"></a></dt>
+<dd><p>Add a wrapping command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">escape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command.to_string" title="Permalink to this definition"></a></dt>
+<dd><p>Stringify the command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command.with_optionals">
+<span class="sig-name descname"><span class="pre">with_optionals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">optionals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command.with_optionals" title="Permalink to this definition"></a></dt>
+<dd><p>Add optional args.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.command.Command.with_positionals">
+<span class="sig-name descname"><span class="pre">with_positionals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">positionals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.Command.with_positionals" title="Permalink to this definition"></a></dt>
+<dd><p>Add positional args.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.command.OptionalArg">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">OptionalArg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=&lt;function</span> <span class="pre">empty_type&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.OptionalArg" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Descriptor for optional arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the option.</p></li>
+<li><p><strong>type</strong> – Optional argument type, defaults to <cite>empty_type</cite>.</p></li>
+<li><p><strong>kwargs</strong> – Optional keyword arguments passed to the type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.command.PositionalArg">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">PositionalArg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type=&lt;function</span> <span class="pre">arg_type&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.PositionalArg" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Descriptor for positional arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Optional argument type, defaults to <cite>arg_type</cite>.</p></li>
+<li><p><strong>kwargs</strong> – Optional keyword arguments passed to the type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.command.arg_type">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">arg_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.arg_type" title="Permalink to this definition"></a></dt>
+<dd><p>Option type for a single args.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.command.args_type">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">args_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.args_type" title="Permalink to this definition"></a></dt>
+<dd><p>Option type for multiple args.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.command.const_type">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">const_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">const</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.const_type" title="Permalink to this definition"></a></dt>
+<dd><p>Option arg for a constant string.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.command.empty_type">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">empty_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.empty_type" title="Permalink to this definition"></a></dt>
+<dd><p>Option arg for an undefined optional arg.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.command.script_to_command">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.command.</span></span><span class="sig-name descname"><span class="pre">script_to_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">script</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls=&lt;class</span> <span class="pre">'pytest_xdocker.command.Command'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.command.script_to_command" title="Permalink to this definition"></a></dt>
+<dd><p>On Windows, console scripts created as .exe should be called directly
+and those created as .cmd with Python.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.docker">
+<span id="pytest-xdocker-docker-module"></span><h2>pytest_xdocker.docker module<a class="headerlink" href="#module-pytest_xdocker.docker" title="Permalink to this heading"></a></h2>
+<p>Docker tools.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerBuildCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerBuildCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerBuildCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker build”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerBuildCommand.with_build_arg">
+<span class="sig-name descname"><span class="pre">with_build_arg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerBuildCommand.with_build_arg" title="Permalink to this definition"></a></dt>
+<dd><p>Configure a build ARG of the Dockerfile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – ARG key.</p></li>
+<li><p><strong>value</strong> – Optional value, no value will carry from envionment variable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerBuildCommand.with_file">
+<span class="sig-name descname"><span class="pre">with_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerBuildCommand.with_file" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the Dockerfile, defaults to PATH/Dockerfile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerBuildCommand.with_pull">
+<span class="sig-name descname"><span class="pre">with_pull</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerBuildCommand.with_pull" title="Permalink to this definition"></a></dt>
+<dd><p>Always attempt to pull a newer version of the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerBuildCommand.with_tag">
+<span class="sig-name descname"><span class="pre">with_tag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerBuildCommand.with_tag" title="Permalink to this definition"></a></dt>
+<dd><p>Name and optionally a tag in the ‘name:tag’ format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.build" title="Permalink to this definition"></a></dt>
+<dd><p>Return a build command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.command" title="Permalink to this definition"></a></dt>
+<dd><p>Return the base command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.exec_">
+<span class="sig-name descname"><span class="pre">exec_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.exec_" title="Permalink to this definition"></a></dt>
+<dd><p>Return an exec command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.logs">
+<span class="sig-name descname"><span class="pre">logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.logs" title="Permalink to this definition"></a></dt>
+<dd><p>Return a logs command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.port">
+<span class="sig-name descname"><span class="pre">port</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.port" title="Permalink to this definition"></a></dt>
+<dd><p>Return a port command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.pull">
+<span class="sig-name descname"><span class="pre">pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.pull" title="Permalink to this definition"></a></dt>
+<dd><p>Return a pull command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.remove" title="Permalink to this definition"></a></dt>
+<dd><p>Return a rm command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.run" title="Permalink to this definition"></a></dt>
+<dd><p>Return a run command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.with_debug">
+<span class="sig-name descname"><span class="pre">with_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.with_debug" title="Permalink to this definition"></a></dt>
+<dd><p>Enable debug mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.with_version">
+<span class="sig-name descname"><span class="pre">with_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.with_version" title="Permalink to this definition"></a></dt>
+<dd><p>Print version information and quit.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerContainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manager a docker container.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.env">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.env" title="Permalink to this definition"></a></dt>
+<dd><p>Return the environment of the container as a dictionary.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.exposed_ip">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exposed_ip</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.exposed_ip" title="Permalink to this definition"></a></dt>
+<dd><p>Return the IP exposed to other containers.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.exposed_port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exposed_port</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.exposed_port" title="Permalink to this definition"></a></dt>
+<dd><p>Return the only port exposed to other containers.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.exposed_ports">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exposed_ports</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.exposed_ports" title="Permalink to this definition"></a></dt>
+<dd><p>Return all ports exposed to other containers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.host_ip">
+<span class="sig-name descname"><span class="pre">host_ip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.host_ip" title="Permalink to this definition"></a></dt>
+<dd><p>Return the host IP accessible from the host.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> – Port exposed to the host, defaults to port_binding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.host_port">
+<span class="sig-name descname"><span class="pre">host_port</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.host_port" title="Permalink to this definition"></a></dt>
+<dd><p>Return the host port accessible from the host.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> – Port exposed to the host, defaults to port_binding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.isrunning">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isrunning</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.isrunning" title="Permalink to this definition"></a></dt>
+<dd><p>Check if has running state.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.port_binding">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port_binding</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.port_binding" title="Permalink to this definition"></a></dt>
+<dd><p>Return the only port binding.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.port_bindings">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port_bindings</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.port_bindings" title="Permalink to this definition"></a></dt>
+<dd><p>Return all port bindings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.remove" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the container.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start the container.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.status" title="Permalink to this definition"></a></dt>
+<dd><p>Get status from inspect.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stop the container.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerExecCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerExecCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerExecCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker exec”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerExecCommand.with_command">
+<span class="sig-name descname"><span class="pre">with_command</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerExecCommand.with_command" title="Permalink to this definition"></a></dt>
+<dd><p>Add command to execute in the docker container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – List ofcommands passed to docker.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerExecCommand.with_detach">
+<span class="sig-name descname"><span class="pre">with_detach</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerExecCommand.with_detach" title="Permalink to this definition"></a></dt>
+<dd><p>Execute the command in the background.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerExecCommand.with_env">
+<span class="sig-name descname"><span class="pre">with_env</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerExecCommand.with_env" title="Permalink to this definition"></a></dt>
+<dd><p>Set environment variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Environment key.</p></li>
+<li><p><strong>value</strong> – Optional environment value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerExecCommand.with_interactive">
+<span class="sig-name descname"><span class="pre">with_interactive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerExecCommand.with_interactive" title="Permalink to this definition"></a></dt>
+<dd><p>Keep STDIN open even if not attached.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerImage</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Representation of a docker image.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImage.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerImage.from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Make a <code class="docutils literal notranslate"><span class="pre">DockerImage</span></code> based on the given <cite>string</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageDigest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerImageDigest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageDigest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerImage" title="pytest_xdocker.docker.DockerImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerImage</span></code></a></p>
+<p>Representation of a image:tag&#64;digest.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageDigest.digest">
+<span class="sig-name descname"><span class="pre">digest</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageDigest.digest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageDigest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageDigest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerImageId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageId" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerImage" title="pytest_xdocker.docker.DockerImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerImage</span></code></a></p>
+<p>Representation of a docker image id.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageId.identifier">
+<span class="sig-name descname"><span class="pre">identifier</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageId.identifier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageTag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerImageTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'latest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageTag" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerImage" title="pytest_xdocker.docker.DockerImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerImage</span></code></a></p>
+<p>Representation of a image:tag.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageTag.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageTag.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerImageTag.tag">
+<span class="sig-name descname"><span class="pre">tag</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerImageTag.tag" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerInspect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerInspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerInspect" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserDict</span></code></p>
+<p>Reader for a docker inspect call.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerInspect.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerInspect.command" title="Permalink to this definition"></a></dt>
+<dd><p>Return the base command.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerInspect.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerInspect.data" title="Permalink to this definition"></a></dt>
+<dd><p>Inspect data as a dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerInspect.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerInspect.get" title="Permalink to this definition"></a></dt>
+<dd><p>Read the keys from the docker inspect result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerInspect.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerInspect.refresh" title="Permalink to this definition"></a></dt>
+<dd><p>Refresh the inspect data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerLogsCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerLogsCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerLogsCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker logs”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerLogsCommand.with_follow">
+<span class="sig-name descname"><span class="pre">with_follow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerLogsCommand.with_follow" title="Permalink to this definition"></a></dt>
+<dd><p>Follow log output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerLogsCommand.with_since">
+<span class="sig-name descname"><span class="pre">with_since</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerLogsCommand.with_since" title="Permalink to this definition"></a></dt>
+<dd><p>Show logs since timestamp.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerNetworkInspect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerNetworkInspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerNetworkInspect" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerInspect" title="pytest_xdocker.docker.DockerInspect"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerInspect</span></code></a></p>
+<p>Shortcut for “docker network inspect”.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerNetworkInspect.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerNetworkInspect.command" title="Permalink to this definition"></a></dt>
+<dd><p>Return the base command.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerPortCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerPortCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerPortCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker port”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerPortCommand.with_private_port">
+<span class="sig-name descname"><span class="pre">with_private_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerPortCommand.with_private_port" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerPullCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerPullCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerPullCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker pull”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerPullCommand.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerPullCommand.execute" title="Permalink to this definition"></a></dt>
+<dd><p>Run the docker pull command and output the progress.</p>
+<p>Retries when failing to pull because this is usually caused by
+a recoverable network failure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> – See <cite>Command.execute</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRemoveCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerRemoveCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRemoveCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker remove”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRemoveCommand.with_force">
+<span class="sig-name descname"><span class="pre">with_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRemoveCommand.with_force" title="Permalink to this definition"></a></dt>
+<dd><p>Force the removal of a running container (uses SIGKILL).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRemoveCommand.with_volumes">
+<span class="sig-name descname"><span class="pre">with_volumes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRemoveCommand.with_volumes" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the volumes associated with the container.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerRunCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker run”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.execute" title="Permalink to this definition"></a></dt>
+<dd><p>Run the docker command and output the progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> – Optional keyword arguments passed to run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_command">
+<span class="sig-name descname"><span class="pre">with_command</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_command" title="Permalink to this definition"></a></dt>
+<dd><p>Add command to run in the docker container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – List of commands passed to docker.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_detach">
+<span class="sig-name descname"><span class="pre">with_detach</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_detach" title="Permalink to this definition"></a></dt>
+<dd><p>Run the container in the background.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_env">
+<span class="sig-name descname"><span class="pre">with_env</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_env" title="Permalink to this definition"></a></dt>
+<dd><p>Add an environment variable to the docker container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Environment key.</p></li>
+<li><p><strong>value</strong> – Optional environment value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_interactive">
+<span class="sig-name descname"><span class="pre">with_interactive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_interactive" title="Permalink to this definition"></a></dt>
+<dd><p>Keep STDIN open even if not attached.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_link">
+<span class="sig-name descname"><span class="pre">with_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_link" title="Permalink to this definition"></a></dt>
+<dd><p>Link to another container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the other container.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_name">
+<span class="sig-name descname"><span class="pre">with_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_name" title="Permalink to this definition"></a></dt>
+<dd><p>Assign a name to the container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Container name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_publish">
+<span class="sig-name descname"><span class="pre">with_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">container_ports</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_ports</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_ip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_publish" title="Permalink to this definition"></a></dt>
+<dd><p>Publish ports from the docker container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>container_ports</strong> – Container ports, ie 1234 or 1234-1238/tcp.</p></li>
+<li><p><strong>host_ports</strong> – Optional host ports, defaults to container ports.</p></li>
+<li><p><strong>host_ip</strong> – Optional host IP, defaults to all interfaces.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_remove">
+<span class="sig-name descname"><span class="pre">with_remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_remove" title="Permalink to this definition"></a></dt>
+<dd><p>Automatically remove the container when it exits.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_volume">
+<span class="sig-name descname"><span class="pre">with_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Mount volumes from the host to the docker container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host_src</strong> – Source path from the host.</p></li>
+<li><p><strong>container_dest</strong> – Destination path in the container,
+defaults to host_src.</p></li>
+<li><p><strong>options</strong> – Comma separated list of options like [rw|ro],
+[z|Z], [[r]shared|[r]slave|[r]private], [nocopy], etc.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_workdir">
+<span class="sig-name descname"><span class="pre">with_workdir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_workdir" title="Permalink to this definition"></a></dt>
+<dd><p>Set the working directory in the container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>workdir</strong> – Working directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerText</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerText" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></p>
+<p>Tool to write a text file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerText.with_comment">
+<span class="sig-name descname"><span class="pre">with_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerText.with_comment" title="Permalink to this definition"></a></dt>
+<dd><p>Write a comment beginning with a #.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>comment</strong> – String to comment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerText.with_line">
+<span class="sig-name descname"><span class="pre">with_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerText.with_line" title="Permalink to this definition"></a></dt>
+<dd><p>Add line to the test.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerText.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerText.write" title="Permalink to this definition"></a></dt>
+<dd><p>Write the text to the given path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – Path where to write the docker text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">Dockerfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerText" title="pytest_xdocker.docker.DockerText"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerText</span></code></a></p>
+<p>Tool to write a Dockerfile.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.from_lines">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.from_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Load lines of a dockerfile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.from_path">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.from_path" title="Permalink to this definition"></a></dt>
+<dd><p>Read a dockerfile content.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Read a dockerfile content.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.image">
+<span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.image" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_add">
+<span class="sig-name descname"><span class="pre">with_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_add" title="Permalink to this definition"></a></dt>
+<dd><p>Add an Add instruction.</p>
+<p>The ADD instruction copies new files, directories or remote file
+URLs from &lt;src&gt; and adds them to the filesystem of the image at
+the path &lt;dest&gt;.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_copy">
+<span class="sig-name descname"><span class="pre">with_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_copy" title="Permalink to this definition"></a></dt>
+<dd><p>Add a COPY instruction.</p>
+<p>The COPY instruction copies new files or directories from &lt;src&gt;
+and adds them to the filesystem of the container at the path
+&lt;dest&gt;.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_env">
+<span class="sig-name descname"><span class="pre">with_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_env" title="Permalink to this definition"></a></dt>
+<dd><p>Add an ENV instruction.</p>
+<p>The ENV instruction sets the environment variable &lt;key&gt; to the
+value &lt;value&gt;.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_expose">
+<span class="sig-name descname"><span class="pre">with_expose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ports</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_expose" title="Permalink to this definition"></a></dt>
+<dd><p>Add an EXPOSE instruction.</p>
+<p>The EXPOSE instruction informs Docker that the container listens
+on the specified network ports at runtime.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_instruction">
+<span class="sig-name descname"><span class="pre">with_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instruction</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_instruction" title="Permalink to this definition"></a></dt>
+<dd><p>Add instruction to the Dockerfile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instruction</strong> – Name of the instruction, eg ADD.</p></li>
+<li><p><strong>args</strong> – Argument list for the instruction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_run">
+<span class="sig-name descname"><span class="pre">with_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_run" title="Permalink to this definition"></a></dt>
+<dd><p>Add a RUN instruction.</p>
+<p>The RUN instruction will execute any commands in a new layer on
+top of the current image and commit the results. The resulting
+committed image will be used for the next step in the Dockerfile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerfile.with_workdir">
+<span class="sig-name descname"><span class="pre">with_workdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workdir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerfile.with_workdir" title="Permalink to this definition"></a></dt>
+<dd><p>Add a WORKDIR instruction.</p>
+<p>The WORKDIR instruction sets the working directory for any RUN,
+CMD, ENTRYPOINT, COPY and ADD instructions that follow it in
+the Dockerfile.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerignore">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">Dockerignore</span></span><a class="headerlink" href="#pytest_xdocker.docker.Dockerignore" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerText" title="pytest_xdocker.docker.DockerText"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerText</span></code></a></p>
+<p>Tool to write a .dockerignore file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.Dockerignore.with_pattern">
+<span class="sig-name descname"><span class="pre">with_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.Dockerignore.with_pattern" title="Permalink to this definition"></a></dt>
+<dd><p>Add a CLI instruction.</p>
+<p>The CLI interprets the .dockerignore file as a newline-separated
+list of patterns similar to the file globs of Unix shells.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.docker_env_type">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">docker_env_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.docker_env_type" title="Permalink to this definition"></a></dt>
+<dd><p>Docker environment variable type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Environment key.</p></li>
+<li><p><strong>value</strong> – Optional environment value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.docker_xrun">
+<span id="pytest-xdocker-docker-xrun-module"></span><h2>pytest_xdocker.docker_xrun module<a class="headerlink" href="#module-pytest_xdocker.docker_xrun" title="Permalink to this heading"></a></h2>
+<p>Run a docker container with pytest xprocess.</p>
+<p>The xprocess plugin extends pytest with options like –xkill which sends
+SIGKILL to fixtures processes. The intention is for the process to stop,
+so this script ensures the docker container is removed. The script is
+called with the same arguments passed to docker run:</p>
+<blockquote>
+<div><p>docker-xrun alpine:3.14 sleep 600</p>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.docker_remove">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">docker_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.docker_remove" title="Permalink to this definition"></a></dt>
+<dd><p>Remove a Docker container forcefully and ignore errors.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.docker_run">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">docker_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.docker_run" title="Permalink to this definition"></a></dt>
+<dd><p>Run a Docker container detached and return the container name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.main">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['-W',</span> <span class="pre">'-d',</span> <span class="pre">'build/doctrees',</span> <span class="pre">'docs',</span> <span class="pre">'build/html']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.main" title="Permalink to this definition"></a></dt>
+<dd><p>Launch and monitor a container.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.monitor_container">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">monitor_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.monitor_container" title="Permalink to this definition"></a></dt>
+<dd><p>Monitor that a Docker container exists.</p>
+<p>If the container is running, follow the logs. If it is stopped,
+inspect the status every interval seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the docker container to monitor.</p></li>
+<li><p><strong>interval</strong> – Check the container status every interval seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.monitor_ppid">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">monitor_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.monitor_ppid" title="Permalink to this definition"></a></dt>
+<dd><p>Monitor a parent PID associated with a Docker container.</p>
+<p>Wait for the parent PID to exit and then remove the associated container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the docker container to remove.</p></li>
+<li><p><strong>interval</strong> – Wait for the parent PID every interval seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.wait_ppid">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">wait_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.wait_ppid" title="Permalink to this definition"></a></dt>
+<dd><p>Wait for a parent PID to exit (become a zombie).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>interval</strong> – Check the parent PID status every interval seconds.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.fixtures">
+<span id="pytest-xdocker-fixtures-module"></span><h2>pytest_xdocker.fixtures module<a class="headerlink" href="#module-pytest_xdocker.fixtures" title="Permalink to this heading"></a></h2>
+<p>XProcess fixtures.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.fixtures.process">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.fixtures.</span></span><span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.fixtures.process" title="Permalink to this definition"></a></dt>
+<dd><p>Initiliaze XProcess.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.fixtures.pytest_addoption">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.fixtures.</span></span><span class="sig-name descname"><span class="pre">pytest_addoption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.fixtures.pytest_addoption" title="Permalink to this definition"></a></dt>
+<dd><p>Add pytest options.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.fixtures.pytest_runtest_makereport">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.fixtures.</span></span><span class="sig-name descname"><span class="pre">pytest_runtest_makereport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.fixtures.pytest_runtest_makereport" title="Permalink to this definition"></a></dt>
+<dd><p>Workaround pyest-xprocess trying to read from closed logfiles.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.lock">
+<span id="pytest-xdocker-lock-module"></span><h2>pytest_xdocker.lock module<a class="headerlink" href="#module-pytest_xdocker.lock" title="Permalink to this heading"></a></h2>
+<p>Locks.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.AlreadyLockedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">AlreadyLockedError</span></span><a class="headerlink" href="#pytest_xdocker.lock.AlreadyLockedError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a lock was already acquired.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.BaseLock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">BaseLock</span></span><a class="headerlink" href="#pytest_xdocker.lock.BaseLock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for locks.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.BaseLock.is_locked">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_locked</span></span><a class="headerlink" href="#pytest_xdocker.lock.BaseLock.is_locked" title="Permalink to this definition"></a></dt>
+<dd><p>Return True if lock acquired, False otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.BaseLock.lock">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.BaseLock.lock" title="Permalink to this definition"></a></dt>
+<dd><p>Acquire the lock.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pytest_xdocker.lock.AlreadyLockedError" title="pytest_xdocker.lock.AlreadyLockedError"><strong>AlreadyLockedError</strong></a> – If the lock was already acquired.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.BaseLock.unlock">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.BaseLock.unlock" title="Permalink to this definition"></a></dt>
+<dd><p>Release the lock.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pytest_xdocker.lock.NotLockedError" title="pytest_xdocker.lock.NotLockedError"><strong>NotLockedError</strong></a> – If the lock was never acquired or already
+released.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.FileLock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">FileLock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lockfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lockfd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.FileLock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.lock.BaseLock" title="pytest_xdocker.lock.BaseLock"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLock</span></code></a></p>
+<p>Advisory file locking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lockfile</strong> – Path to the lock file.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.FileLock.is_locked">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_locked</span></span><a class="headerlink" href="#pytest_xdocker.lock.FileLock.is_locked" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the file is locked, based on the file descriptor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.FileLock.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.FileLock.lock" title="Permalink to this definition"></a></dt>
+<dd><p>See <cite>BaseLock.lock</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.FileLock.unlock">
+<span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.FileLock.unlock" title="Permalink to this definition"></a></dt>
+<dd><p>See <cite>BaseLock.unlock</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.MemoryLock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">MemoryLock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_locked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.MemoryLock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.lock.BaseLock" title="pytest_xdocker.lock.BaseLock"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLock</span></code></a></p>
+<p>In-memory locking.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.MemoryLock.is_locked">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_locked</span></span><a class="headerlink" href="#pytest_xdocker.lock.MemoryLock.is_locked" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor for read-only private field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.MemoryLock.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.MemoryLock.lock" title="Permalink to this definition"></a></dt>
+<dd><p>See <cite>BaseLock.lock</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.MemoryLock.unlock">
+<span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.MemoryLock.unlock" title="Permalink to this definition"></a></dt>
+<dd><p>See <cite>BaseLock.unlock</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.NotLockedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">NotLockedError</span></span><a class="headerlink" href="#pytest_xdocker.lock.NotLockedError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when the lock was never acquired or already released.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.NullLock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">NullLock</span></span><a class="headerlink" href="#pytest_xdocker.lock.NullLock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.lock.BaseLock" title="pytest_xdocker.lock.BaseLock"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLock</span></code></a></p>
+<p>Null pattern implementation.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.NullLock.is_locked">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_locked</span></span><a class="headerlink" href="#pytest_xdocker.lock.NullLock.is_locked" title="Permalink to this definition"></a></dt>
+<dd><p>Return False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.NullLock.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.NullLock.lock" title="Permalink to this definition"></a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.NullLock.unlock">
+<span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.NullLock.unlock" title="Permalink to this definition"></a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.lock">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.lock" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.lock.unlock">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.lock.</span></span><span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.lock.unlock" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.network">
+<span id="pytest-xdocker-network-module"></span><h2>pytest_xdocker.network module<a class="headerlink" href="#module-pytest_xdocker.network" title="Permalink to this heading"></a></h2>
+<p>Networking tools.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.network.get_host_ip">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.network.</span></span><span class="sig-name descname"><span class="pre">get_host_ip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.network.get_host_ip" title="Permalink to this definition"></a></dt>
+<dd><p>Get an IP on this host.</p>
+<p>The function tries to use the IP bound to the docker0 interface
+which should be available on Linux and, if that fails, it defaults
+to the default
+en0-en9 interfaces which should be available on MacOS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.network.get_open_port">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.network.</span></span><span class="sig-name descname"><span class="pre">get_open_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.network.get_open_port" title="Permalink to this definition"></a></dt>
+<dd><p>Get an unused port.</p>
+<p>There is a race condition where the port could be taken after this
+method closes the socket but before the consumer opens it. Since
+this is just for test fixtures I’m not worrying about that.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.process">
+<span id="pytest-xdocker-process-module"></span><h2>pytest_xdocker.process module<a class="headerlink" href="#module-pytest_xdocker.process" title="Permalink to this heading"></a></h2>
+<p>XProcess management.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.process.Process">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.Process" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">XProcess</span></code></p>
+<p>XProcess with restarting capability and extra logging.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.Process.ensure">
+<span class="sig-name descname"><span class="pre">ensure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.Process.ensure" title="Permalink to this definition"></a></dt>
+<dd><p>Ensure the container is running or restarted if requested.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.Process.getinfo">
+<span class="sig-name descname"><span class="pre">getinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.Process.getinfo" title="Permalink to this definition"></a></dt>
+<dd><p>Get the process info based on the name.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.process.Process.root_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">root_dir</span></span><a class="headerlink" href="#pytest_xdocker.process.Process.root_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Return the root dir, but as a snake_case property.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">ProcessConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Lightweight process config.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessConfig.option">
+<span class="sig-name descname"><span class="pre">option</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pytest_xdocker.process.ProcessConfig.option" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessConfig.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessConfig.trace" title="Permalink to this definition"></a></dt>
+<dd><p>Write a trace log.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">ProcessData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.process.ProcessData" title="pytest_xdocker.process.ProcessData"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessData</span></code></a></p>
+<p>Representation of a process’ data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessData.change">
+<span class="sig-name descname"><span class="pre">change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">changes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessData.change" title="Permalink to this definition"></a></dt>
+<dd><p>Access for namedtuple _replace so that it doesn’t look private.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">ProcessInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">XProcessInfo</span></code></p>
+<p>XProcessInfo with better kill/running methods.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessInfo.isrunning">
+<span class="sig-name descname"><span class="pre">isrunning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessInfo.isrunning" title="Permalink to this definition"></a></dt>
+<dd><p>Check if process is running.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessInfo.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessInfo.kill" title="Permalink to this definition"></a></dt>
+<dd><p>Kill the process and wait for children to exit.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">ProcessServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessServer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for a container process.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessServer.get_cache_publish">
+<span class="sig-name descname"><span class="pre">get_cache_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controldir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_ports</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessServer.get_cache_publish" title="Permalink to this definition"></a></dt>
+<dd><p>Read from cache or define published ports.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessServer.prepare_func">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prepare_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controldir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessServer.prepare_func" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare function passed to <cite>Process.ensure</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>controldir</strong> – py.path instance of the control directory.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ProcessData used to ensure the server is running.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.process.ProcessServer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.ProcessServer.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the server by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the process.</p></li>
+<li><p><strong>restart</strong> – True to restart, False to keep the process,
+None to look in the process config.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.process.get_process_dir">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">get_process_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.get_process_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Get the process directory under the root directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root_dir</strong> – Root directory, defaults to the root of the project.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.process.get_root_dir">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">get_root_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.process.get_root_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Get the root directory of the project.</p>
+<p>The root is assumed to contain a .git subdirectory, or config.ini.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – Pytest or Process config instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.process.pytest_cache_config_compat">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.process.</span></span><span class="sig-name descname"><span class="pre">pytest_cache_config_compat</span></span><a class="headerlink" href="#pytest_xdocker.process.pytest_cache_config_compat" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#pytest_xdocker.process.ProcessConfig" title="pytest_xdocker.process.ProcessConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.retry">
+<span id="pytest-xdocker-retry-module"></span><h2>pytest_xdocker.retry module<a class="headerlink" href="#module-pytest_xdocker.retry" title="Permalink to this heading"></a></h2>
+<p>Retry functions until a condition is met.</p>
+<p>Here is an example of using the retry function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hamcrest</span> <span class="kn">import</span> <span class="n">greater_than</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">retry</span><span class="p">(</span><span class="n">calling</span><span class="p">(</span><span class="nb">next</span><span class="p">,</span> <span class="n">count</span><span class="p">()))</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">greater_than</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Calling">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">Calling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">returned=&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Calling" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Function call configuration that can be repeated.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Calling.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#pytest_xdocker.retry.Calling.args" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Calling.func">
+<span class="sig-name descname"><span class="pre">func</span></span><a class="headerlink" href="#pytest_xdocker.retry.Calling.func" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Calling.kwargs">
+<span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#pytest_xdocker.retry.Calling.kwargs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Calling.returned">
+<span class="sig-name descname"><span class="pre">returned</span></span><a class="headerlink" href="#pytest_xdocker.retry.Calling.returned" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.CatchingProbe">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">CatchingProbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.CatchingProbe" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.retry.Probe" title="pytest_xdocker.retry.Probe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Probe</span></code></a></p>
+<p>Probe to ignore an exception while retrying.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.CatchingProbe.exception">
+<span class="sig-name descname"><span class="pre">exception</span></span><a class="headerlink" href="#pytest_xdocker.retry.CatchingProbe.exception" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.CatchingProbe.func">
+<span class="sig-name descname"><span class="pre">func</span></span><a class="headerlink" href="#pytest_xdocker.retry.CatchingProbe.func" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.CatchingProbe.pattern">
+<span class="sig-name descname"><span class="pre">pattern</span></span><a class="headerlink" href="#pytest_xdocker.retry.CatchingProbe.pattern" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Poller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">Poller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleeper=&lt;built-in</span> <span class="pre">function</span> <span class="pre">sleep&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Poller" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Poller for retrying an operation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Poller.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Poller.check" title="Permalink to this definition"></a></dt>
+<dd><p>Poll until the probe succeeds.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Poller.delay">
+<span class="sig-name descname"><span class="pre">delay</span></span><a class="headerlink" href="#pytest_xdocker.retry.Poller.delay" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Poller.sleeper">
+<span class="sig-name descname"><span class="pre">sleeper</span></span><a class="headerlink" href="#pytest_xdocker.retry.Poller.sleeper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Poller.tries">
+<span class="sig-name descname"><span class="pre">tries</span></span><a class="headerlink" href="#pytest_xdocker.retry.Poller.tries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Probe">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">Probe</span></span><a class="headerlink" href="#pytest_xdocker.retry.Probe" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base probe class.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.ProbeResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">ProbeResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">success</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">returned</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raised</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.ProbeResult" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Result of a probe.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.ProbeResult.raised">
+<span class="sig-name descname"><span class="pre">raised</span></span><a class="headerlink" href="#pytest_xdocker.retry.ProbeResult.raised" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.ProbeResult.returned">
+<span class="sig-name descname"><span class="pre">returned</span></span><a class="headerlink" href="#pytest_xdocker.retry.ProbeResult.returned" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.ProbeResult.success">
+<span class="sig-name descname"><span class="pre">success</span></span><a class="headerlink" href="#pytest_xdocker.retry.ProbeResult.success" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Retry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">Retry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Retry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Retry the given function until the expected result.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Retry.catching">
+<span class="sig-name descname"><span class="pre">catching</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Retry.catching" title="Permalink to this definition"></a></dt>
+<dd><p>Return a poller with a catching probe.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Retry.func">
+<span class="sig-name descname"><span class="pre">func</span></span><a class="headerlink" href="#pytest_xdocker.retry.Retry.func" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.Retry.until">
+<span class="sig-name descname"><span class="pre">until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.Retry.until" title="Permalink to this definition"></a></dt>
+<dd><p>Return a poller with a value check probe.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.UntilProbe">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">UntilProbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.UntilProbe" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.retry.Probe" title="pytest_xdocker.retry.Probe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Probe</span></code></a></p>
+<p>Probe to expect a value from a retry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.UntilProbe.func">
+<span class="sig-name descname"><span class="pre">func</span></span><a class="headerlink" href="#pytest_xdocker.retry.UntilProbe.func" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.UntilProbe.value">
+<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#pytest_xdocker.retry.UntilProbe.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.calling">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">calling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.calling" title="Permalink to this definition"></a></dt>
+<dd><p>Defer calling a function with the given arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> – The function or method to be called.</p></li>
+<li><p><strong>args</strong> – Optional positional arguments.</p></li>
+<li><p><strong>kwargs</strong> – Optional keyword arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Calling instance which can be called later.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.retry">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">retry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.retry" title="Permalink to this definition"></a></dt>
+<dd><p>Retry calling a function with the given arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A Retry instance on which to specify the retry condition.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.retry.retry_catching">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.retry.</span></span><span class="sig-name descname"><span class="pre">retry_catching</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.retry.retry_catching" title="Permalink to this definition"></a></dt>
+<dd><p>Retry decorator for catching exceptions.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.validators">
+<span id="pytest-xdocker-validators-module"></span><h2>pytest_xdocker.validators module<a class="headerlink" href="#module-pytest_xdocker.validators" title="Permalink to this heading"></a></h2>
+<p>Attr validators.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.validators.matches">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.validators.</span></span><span class="sig-name descname"><span class="pre">matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matcher</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.validators.matches" title="Permalink to this definition"></a></dt>
+<dd><p>Use as attr.ib(validator=…) to matcher based validation.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytest_xdocker" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="pytest_xdocker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="How to contribute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Marc Tardif.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
