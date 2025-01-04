@@ -1,20 +1,28 @@
 [tool.poetry]
-name = "pytest-docker-xrun"
+name = "pytest-xdocker"
 version = "0.0.0"
 description = "Pytest fixture to run docker across test runs."
 authors = ["Marc Tardif"]
 readme = "README.rst"
-repository = "https://github.com/cr3/pytest-docker-xrun"
+repository = "https://github.com/cr3/pytest-xdocker"
 packages = [
-    { include = "pytest_docker_xrun" },
+    { include = "pytest_xdocker" },
 ]
 
 [tool.poetry.dependencies]
+attrs = "^24.3.0"
+netifaces = "^0.11.0"
+psutil = "^6.1.1"
+pyhamcrest = "^2.1.0"
 python = "^3.9"
+pytest = "^7.4.2"
+pytest-cache = "^1.0"
+pytest-xprocess = "^1.0.2"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.3"
-pytest = "^7.2.2"
+pytest-unique = "^0.1.3"
+yarl = "^1.18.3"
 
 [tool.poetry.group.check]
 optional = true
@@ -31,6 +39,15 @@ optional = true
 sphinx = "^6.1.3"
 sphinxcontrib-log-cabinet = "^1.0.1"
 sphinx-rtd-theme = "^1.2.0"
+
+[tool.poetry.scripts]
+docker-xrun = "pytest_xdocker.docker_xrun:main"
+
+[tool.poetry.plugins."pytest11"]
+docker-xrun = "pytest_xdocker.fixtures"
+
+[tool.poetry.plugins."pytest_unique.unique"]
+ip = "pytest_xdocker.network:unique_ip"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -99,7 +116,7 @@ addopts = [
     "--doctest-glob=*.rst",
 ]
 testpaths = [
-    "pytest_docker_xrun",
+    "pytest_xdocker",
     "docs",
     "tests",
 ]
@@ -108,7 +125,7 @@ testpaths = [
 #   https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.paths]
 source = [
-    "pytest_docker_xrun",
+    "pytest_xdocker",
     "*/*/site-packages",
 ]
 
@@ -120,5 +137,5 @@ show_missing = true
 branch = true
 parallel = true
 source = [
-    "pytest_docker_xrun",
+    "pytest_xdocker",
 ]

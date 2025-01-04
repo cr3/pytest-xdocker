@@ -8,7 +8,7 @@ from importlib.metadata import distribution
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "pytest-docker-xrun"
+project = "pytest-xdocker"
 copyright = "2024, Marc Tardif"  # noqa: A001
 author = "Marc Tardif"
 version = release = distribution(project).version

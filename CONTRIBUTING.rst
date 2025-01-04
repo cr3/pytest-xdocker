@@ -80,18 +80,18 @@ Setting up
     .. code-block:: text
 
         > git config --global credential.helper manager
-        > git clone https://github.com/cr3/pytest-docker-xrun
-        Cloning into 'pytest-docker-xrun'...
+        > git clone https://github.com/cr3/pytest-xdocker
+        Cloning into 'pytest-xdocker'...
 
     - Select "manager"
     - Check "Always use this from now on" and press "Select"
     - Sign in with token and paste your token
 
--   Change into the ``pytest-docker-xrun`` directory:
+-   Change into the ``pytest-xdocker`` directory:
 
     .. code-block:: text
 
-        > cd pytest-docker-xrun
+        > cd pytest-xdocker
 
 -   Create a virtualenv.
 
@@ -181,7 +181,7 @@ Update the apidoc when adding new modules:
 
 .. code-block:: text
 
-    > sphinx-apidoc --force --implicit-namespaces -o docs pytest_docker_xrun
+    > sphinx-apidoc --force --implicit-namespaces -o docs pytest_xdocker
 
 Open ``build/html/index.html`` in your browser to view the docs.
 
