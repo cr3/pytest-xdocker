@@ -62,6 +62,46 @@ from pytest_xdocker.docker import (
             ["docker", "build", "--build-arg", "var=value", "path"],
         ),
         (
+            docker.compose(),
+            ["docker", "compose"],
+        ),
+        (
+            docker.compose().with_project_name("project"),
+            ["docker", "compose", "--project-name", "project"],
+        ),
+        (
+            docker.compose().build(),
+            ["docker", "compose", "build"],
+        ),
+        (
+            docker.compose().build("service"),
+            ["docker", "compose", "build", "service"],
+        ),
+        (
+            docker.compose().build().with_no_cache(),
+            ["docker", "compose", "build", "--no-cache"],
+        ),
+        (
+            docker.compose().build("service").with_pull(),
+            ["docker", "compose", "build", "--pull"],
+        ),
+        (
+            docker.compose().up(),
+            ["docker", "compose", "up"],
+        ),
+        (
+            docker.compose().up("service"),
+            ["docker", "compose", "up", "service"],
+        ),
+        (
+            docker.compose().up().with_build(),
+            ["docker", "compose", "up", "--build"],
+        ),
+        (
+            docker.compose().up().with_force_recreate(),
+            ["docker", "compose", "up", "--force-recreate"],
+        ),
+        (
             docker.exec_("name"),
             ["docker", "exec", "name"],
         ),

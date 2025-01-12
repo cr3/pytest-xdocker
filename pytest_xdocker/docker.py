@@ -54,6 +54,10 @@ class DockerCommand(Command):
         """Return a build command."""
         return DockerBuildCommand("build", self).with_positionals(str(path))
 
+    def compose(self):
+        """Return a compose command."""
+        return DockerComposeCommand("compose", self)
+
     def exec_(self, name):
         """Return an exec command."""
         return DockerExecCommand("exec", self).with_positionals(name)
@@ -100,6 +104,44 @@ class DockerBuildCommand(Command):
     :param key: ARG key.
     :param value: Optional value, no value will carry from envionment variable.
     """
+
+
+class DockerComposeCommand(Command):
+    """Shortcut for "docker compose"."""
+
+    with_project_name = OptionalArg("--project-name", arg_type, converter=str)
+    """Assign a project name to the compose configuration.
+
+    :param project_name: Project name.
+    """
+
+    def build(self, *services):
+        """Return a build command."""
+        return DockerComposeBuildCommand("build", self).with_positionals(*services)
+
+    def up(self, *services):
+        """Return an up command."""
+        return DockerComposeUpCommand("up", self).with_positionals(*services)
+
+
+class DockerComposeBuildCommand(Command):
+    """Shortcut for "docker compose build"."""
+
+    with_no_cache = OptionalArg("--no-cache")
+    """Do not use cache when building the image."""
+
+    with_pull = OptionalArg("--pull")
+    """Always attempt to pull a newer version of the image."""
+
+
+class DockerComposeUpCommand(Command):
+    """Shortcut for "docker compose up"."""
+
+    with_build = OptionalArg("--build")
+    """Build images before starting containers."""
+
+    with_force_recreate = OptionalArg("--force-recreate")
+    """Recreate containers even if their configuration and image haven't changed."""
 
 
 class DockerExecCommand(Command):
