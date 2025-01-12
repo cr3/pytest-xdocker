@@ -86,6 +86,62 @@ from pytest_xdocker.docker import (
             ["docker", "compose", "build", "--pull"],
         ),
         (
+            docker.compose().run("service"),
+            ["docker", "compose", "run", "service"],
+        ),
+        (
+            docker.compose().run("service").with_command("command"),
+            ["docker", "compose", "run", "service", "command"],
+        ),
+        (
+            docker.compose().run("service").with_detach(),
+            ["docker", "compose", "run", "--detach", "service"],
+        ),
+        (
+            docker.compose().run("service").with_env("key"),
+            ["docker", "compose", "run", "--env", "key", "service"],
+        ),
+        (
+            docker.compose().run("service").with_env("key", "value"),
+            ["docker", "compose", "run", "--env", "key=value", "service"],
+        ),
+        (
+            docker.compose().run("service").with_interactive(),
+            ["docker", "compose", "run", "--interactive", "service"],
+        ),
+        (
+            docker.compose().run("service").with_name("name"),
+            ["docker", "compose", "run", "--name", "name", "service"],
+        ),
+        (
+            docker.compose().run("service").with_publish(1),
+            ["docker", "compose", "run", "--publish", "::1", "service"],
+        ),
+        (
+            docker.compose().run("service").with_publish("1-2"),
+            ["docker", "compose", "run", "--publish", "::1-2", "service"],
+        ),
+        (
+            docker.compose().run("service").with_publish(1, 2),
+            ["docker", "compose", "run", "--publish", ":2:1", "service"],
+        ),
+        (
+            docker.compose().run("service").with_publish(1, 2, "ip"),
+            ["docker", "compose", "run", "--publish", "ip:2:1", "service"],
+        ),
+        (
+            docker.compose().run("service").with_remove(),
+            ["docker", "compose", "run", "--rm", "service"],
+        ),
+        (
+            docker.compose().run("service").with_workdir("workdir"),
+            ["docker", "compose", "run", "--workdir", "workdir", "service"],
+        ),
+        (
+            docker.compose().run("service").with_build(),
+            ["docker", "compose", "run", "--build", "service"],
+        ),
+        (
             docker.compose().up(),
             ["docker", "compose", "up"],
         ),

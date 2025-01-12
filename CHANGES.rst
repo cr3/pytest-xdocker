@@ -1,3 +1,10 @@
+Version 0.1.2
+-------------
+
+Released 2025-01-12
+
+-   Add docker compose run command.
+
 Version 0.1.1
 -------------
 

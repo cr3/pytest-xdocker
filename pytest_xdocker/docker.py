@@ -86,132 +86,6 @@ class DockerCommand(Command):
 docker = DockerCommand("docker")
 
 
-class DockerBuildCommand(Command):
-    """Shortcut for "docker build"."""
-
-    with_pull = OptionalArg("--pull")
-    """Always attempt to pull a newer version of the image."""
-
-    with_file = OptionalArg("--file", arg_type, converter=str)
-    """Name of the Dockerfile, defaults to PATH/Dockerfile."""
-
-    with_tag = OptionalArg("--tag", arg_type, converter=str)
-    """Name and optionally a tag in the 'name:tag' format."""
-
-    with_build_arg = OptionalArg("--build-arg", docker_env_type)
-    """Configure a build ARG of the Dockerfile.
-
-    :param key: ARG key.
-    :param value: Optional value, no value will carry from envionment variable.
-    """
-
-
-class DockerComposeCommand(Command):
-    """Shortcut for "docker compose"."""
-
-    with_project_name = OptionalArg("--project-name", arg_type, converter=str)
-    """Assign a project name to the compose configuration.
-
-    :param project_name: Project name.
-    """
-
-    def build(self, *services):
-        """Return a build command."""
-        return DockerComposeBuildCommand("build", self).with_positionals(*services)
-
-    def up(self, *services):
-        """Return an up command."""
-        return DockerComposeUpCommand("up", self).with_positionals(*services)
-
-
-class DockerComposeBuildCommand(Command):
-    """Shortcut for "docker compose build"."""
-
-    with_no_cache = OptionalArg("--no-cache")
-    """Do not use cache when building the image."""
-
-    with_pull = OptionalArg("--pull")
-    """Always attempt to pull a newer version of the image."""
-
-
-class DockerComposeUpCommand(Command):
-    """Shortcut for "docker compose up"."""
-
-    with_build = OptionalArg("--build")
-    """Build images before starting containers."""
-
-    with_force_recreate = OptionalArg("--force-recreate")
-    """Recreate containers even if their configuration and image haven't changed."""
-
-
-class DockerExecCommand(Command):
-    """Shortcut for "docker exec"."""
-
-    with_command = PositionalArg(args_type, converter=str)
-    """Add command to execute in the docker container.
-
-    :param command: List ofcommands passed to docker.
-    """
-
-    with_detach = OptionalArg("--detach")
-    """Execute the command in the background."""
-
-    with_env = OptionalArg("--env", docker_env_type)
-    """Set environment variables.
-
-    :param key: Environment key.
-    :param value: Optional environment value.
-    """
-
-    with_interactive = OptionalArg("--interactive")
-    """Keep STDIN open even if not attached."""
-
-
-class DockerLogsCommand(Command):
-    """Shortcut for "docker logs"."""
-
-    with_follow = OptionalArg("--follow")
-    """Follow log output."""
-
-    def with_since(self, timestamp):
-        """Show logs since timestamp."""
-        with suppress(AttributeError):
-            timestamp = timestamp.isoformat()
-
-        return self.with_optionals("--since", timestamp)
-
-
-class DockerPortCommand(Command):
-    """Shortcut for "docker port"."""
-
-    with_private_port = PositionalArg(arg_type, converter=str)
-
-
-class DockerPullCommand(Command):
-    """Shortcut for "docker pull"."""
-
-    @retry_catching(CalledProcessError)
-    def execute(self, **kwargs):
-        """Run the docker pull command and output the progress.
-
-        Retries when failing to pull because this is usually caused by
-        a recoverable network failure.
-
-        :param kwargs: See `Command.execute`.
-        """
-        return super().execute(**kwargs)
-
-
-class DockerRemoveCommand(Command):
-    """Shortcut for "docker remove"."""
-
-    with_force = OptionalArg("--force")
-    """Force the removal of a running container (uses SIGKILL)."""
-
-    with_volumes = OptionalArg("--volumes")
-    """Remove the volumes associated with the container."""
-
-
 class DockerRunCommand(Command):
     """Shortcut for "docker run"."""
 
@@ -296,6 +170,143 @@ class DockerRunCommand(Command):
         kwargs.setdefault("check", True)
         logging.info("Running command: %s", self)
         return run(self, **kwargs)  # noqa: S603
+
+
+class DockerBuildCommand(Command):
+    """Shortcut for "docker build"."""
+
+    with_pull = OptionalArg("--pull")
+    """Always attempt to pull a newer version of the image."""
+
+    with_file = OptionalArg("--file", arg_type, converter=str)
+    """Name of the Dockerfile, defaults to PATH/Dockerfile."""
+
+    with_tag = OptionalArg("--tag", arg_type, converter=str)
+    """Name and optionally a tag in the 'name:tag' format."""
+
+    with_build_arg = OptionalArg("--build-arg", docker_env_type)
+    """Configure a build ARG of the Dockerfile.
+
+    :param key: ARG key.
+    :param value: Optional value, no value will carry from envionment variable.
+    """
+
+
+class DockerComposeCommand(Command):
+    """Shortcut for "docker compose"."""
+
+    with_project_name = OptionalArg("--project-name", arg_type, converter=str)
+    """Assign a project name to the compose configuration.
+
+    :param project_name: Project name.
+    """
+
+    def build(self, *services):
+        """Return a build command."""
+        return DockerComposeBuildCommand("build", self).with_positionals(*services)
+
+    def run(self, service):
+        """Return a run command."""
+        return DockerComposeRunCommand("run", self).with_positionals(service)
+
+    def up(self, *services):
+        """Return an up command."""
+        return DockerComposeUpCommand("up", self).with_positionals(*services)
+
+
+class DockerComposeBuildCommand(Command):
+    """Shortcut for "docker compose build"."""
+
+    with_no_cache = OptionalArg("--no-cache")
+    """Do not use cache when building the image."""
+
+    with_pull = OptionalArg("--pull")
+    """Always attempt to pull a newer version of the image."""
+
+
+class DockerComposeRunCommand(DockerRunCommand):
+    """Shortcut for "docker compose run"."""
+
+    with_build = OptionalArg("--build")
+    """Build image before starting container."""
+
+
+class DockerComposeUpCommand(Command):
+    """Shortcut for "docker compose up"."""
+
+    with_build = OptionalArg("--build")
+    """Build images before starting containers."""
+
+    with_force_recreate = OptionalArg("--force-recreate")
+    """Recreate containers even if their configuration and image haven't changed."""
+
+
+class DockerExecCommand(Command):
+    """Shortcut for "docker exec"."""
+
+    with_command = PositionalArg(args_type, converter=str)
+    """Add command to execute in the docker container.
+
+    :param command: List ofcommands passed to docker.
+    """
+
+    with_detach = OptionalArg("--detach")
+    """Execute the command in the background."""
+
+    with_env = OptionalArg("--env", docker_env_type)
+    """Set environment variables.
+
+    :param key: Environment key.
+    :param value: Optional environment value.
+    """
+
+    with_interactive = OptionalArg("--interactive")
+    """Keep STDIN open even if not attached."""
+
+
+class DockerLogsCommand(Command):
+    """Shortcut for "docker logs"."""
+
+    with_follow = OptionalArg("--follow")
+    """Follow log output."""
+
+    def with_since(self, timestamp):
+        """Show logs since timestamp."""
+        with suppress(AttributeError):
+            timestamp = timestamp.isoformat()
+
+        return self.with_optionals("--since", timestamp)
+
+
+class DockerPortCommand(Command):
+    """Shortcut for "docker port"."""
+
+    with_private_port = PositionalArg(arg_type, converter=str)
+
+
+class DockerPullCommand(Command):
+    """Shortcut for "docker pull"."""
+
+    @retry_catching(CalledProcessError)
+    def execute(self, **kwargs):
+        """Run the docker pull command and output the progress.
+
+        Retries when failing to pull because this is usually caused by
+        a recoverable network failure.
+
+        :param kwargs: See `Command.execute`.
+        """
+        return super().execute(**kwargs)
+
+
+class DockerRemoveCommand(Command):
+    """Shortcut for "docker remove"."""
+
+    with_force = OptionalArg("--force")
+    """Force the removal of a running container (uses SIGKILL)."""
+
+    with_volumes = OptionalArg("--volumes")
+    """Remove the volumes associated with the container."""
 
 
 class DockerContainer:
