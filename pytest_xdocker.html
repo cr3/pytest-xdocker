@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.1 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.1
+                0.1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerCommand"><code class="docutils literal notranslate"><span class="pre">DockerCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeBuildCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeBuildCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeRunCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeRunCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeUpCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeUpCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerContainer"><code class="docutils literal notranslate"><span class="pre">DockerContainer</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerExecCommand"><code class="docutils literal notranslate"><span class="pre">DockerExecCommand</span></code></a></li>
@@ -575,6 +576,12 @@ and those created as .cmd with Python.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand.run" title="Permalink to this definition"></a></dt>
+<dd><p>Return a run command.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand.up">
 <span class="sig-name descname"><span class="pre">up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">services</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand.up" title="Permalink to this definition"></a></dt>
 <dd><p>Return an up command.</p>
@@ -589,6 +596,19 @@ and those created as .cmd with Python.</p>
 <dd class="field-odd"><p><strong>project_name</strong> – Project name.</p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeRunCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerComposeRunCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeRunCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.docker.DockerRunCommand" title="pytest_xdocker.docker.DockerRunCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerRunCommand</span></code></a></p>
+<p>Shortcut for “docker compose run”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeRunCommand.with_build">
+<span class="sig-name descname"><span class="pre">with_build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeRunCommand.with_build" title="Permalink to this definition"></a></dt>
+<dd><p>Build image before starting container.</p>
 </dd></dl>
 
 </dd></dl>
