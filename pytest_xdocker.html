@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.0 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -73,6 +73,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.docker">pytest_xdocker.docker module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerBuildCommand"><code class="docutils literal notranslate"><span class="pre">DockerBuildCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerCommand"><code class="docutils literal notranslate"><span class="pre">DockerCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeBuildCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeBuildCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeCommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerComposeUpCommand"><code class="docutils literal notranslate"><span class="pre">DockerComposeUpCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerContainer"><code class="docutils literal notranslate"><span class="pre">DockerContainer</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerExecCommand"><code class="docutils literal notranslate"><span class="pre">DockerExecCommand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.DockerImage"><code class="docutils literal notranslate"><span class="pre">DockerImage</span></code></a></li>
@@ -486,6 +489,12 @@ and those created as .cmd with Python.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.compose">
+<span class="sig-name descname"><span class="pre">compose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.compose" title="Permalink to this definition"></a></dt>
+<dd><p>Return a compose command.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.exec_">
 <span class="sig-name descname"><span class="pre">exec_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.exec_" title="Permalink to this definition"></a></dt>
 <dd><p>Return an exec command.</p>
@@ -531,6 +540,74 @@ and those created as .cmd with Python.</p>
 <dt class="sig sig-object py" id="pytest_xdocker.docker.DockerCommand.with_version">
 <span class="sig-name descname"><span class="pre">with_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerCommand.with_version" title="Permalink to this definition"></a></dt>
 <dd><p>Print version information and quit.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeBuildCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerComposeBuildCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeBuildCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker compose build”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeBuildCommand.with_no_cache">
+<span class="sig-name descname"><span class="pre">with_no_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeBuildCommand.with_no_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Do not use cache when building the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeBuildCommand.with_pull">
+<span class="sig-name descname"><span class="pre">with_pull</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeBuildCommand.with_pull" title="Permalink to this definition"></a></dt>
+<dd><p>Always attempt to pull a newer version of the image.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerComposeCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker compose”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">services</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand.build" title="Permalink to this definition"></a></dt>
+<dd><p>Return a build command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand.up">
+<span class="sig-name descname"><span class="pre">up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">services</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand.up" title="Permalink to this definition"></a></dt>
+<dd><p>Return an up command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeCommand.with_project_name">
+<span class="sig-name descname"><span class="pre">with_project_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeCommand.with_project_name" title="Permalink to this definition"></a></dt>
+<dd><p>Assign a project name to the compose configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>project_name</strong> – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeUpCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerComposeUpCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent=&lt;tuple_iterator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positionals=_Nothing.NOTHING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optionals=_Nothing.NOTHING</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeUpCommand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.command.Command" title="pytest_xdocker.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
+<p>Shortcut for “docker compose up”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeUpCommand.with_build">
+<span class="sig-name descname"><span class="pre">with_build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeUpCommand.with_build" title="Permalink to this definition"></a></dt>
+<dd><p>Build images before starting containers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerComposeUpCommand.with_force_recreate">
+<span class="sig-name descname"><span class="pre">with_force_recreate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerComposeUpCommand.with_force_recreate" title="Permalink to this definition"></a></dt>
+<dd><p>Recreate containers even if their configuration and image haven’t changed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1548,8 +1625,8 @@ None to look in the process config.</p></li>
 <span id="pytest-xdocker-retry-module"></span><h2>pytest_xdocker.retry module<a class="headerlink" href="#module-pytest_xdocker.retry" title="Permalink to this heading"></a></h2>
 <p>Retry functions until a condition is met.</p>
 <p>Here is an example of using the retry function:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hamcrest</span> <span class="kn">import</span> <span class="n">greater_than</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">hamcrest</span><span class="w"> </span><span class="kn">import</span> <span class="n">greater_than</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">retry</span><span class="p">(</span><span class="n">calling</span><span class="p">(</span><span class="nb">next</span><span class="p">,</span> <span class="n">count</span><span class="p">()))</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">greater_than</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">3</span>
 </pre></div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pytest-xdocker 0.1.0 documentation</title>
+  <title>Index &mdash; pytest-xdocker 0.1.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -126,7 +126,11 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.build">build() (pytest_xdocker.docker.DockerCommand method)</a>
+
+      <ul>
+        <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeCommand.build">(pytest_xdocker.docker.DockerComposeCommand method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -147,10 +151,10 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.Retry.catching">catching() (pytest_xdocker.retry.Retry method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.CatchingProbe">CatchingProbe (class in pytest_xdocker.retry)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pytest_xdocker.html#pytest_xdocker.process.ProcessData.change">change() (pytest_xdocker.process.ProcessData method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.Poller.check">check() (pytest_xdocker.retry.Poller method)</a>
@@ -164,6 +168,8 @@
 </li>
       </ul></li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.command">command() (pytest_xdocker.docker.DockerCommand method)</a>
+</li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.compose">compose() (pytest_xdocker.docker.DockerCommand method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.command.const_type">const_type() (in module pytest_xdocker.command)</a>
 </li>
@@ -191,14 +197,20 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand">DockerCommand (class in pytest_xdocker.docker)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeBuildCommand">DockerComposeBuildCommand (class in pytest_xdocker.docker)</a>
+</li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeCommand">DockerComposeCommand (class in pytest_xdocker.docker)</a>
+</li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeUpCommand">DockerComposeUpCommand (class in pytest_xdocker.docker)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerContainer">DockerContainer (class in pytest_xdocker.docker)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerExecCommand">DockerExecCommand (class in pytest_xdocker.docker)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile">Dockerfile (class in pytest_xdocker.docker)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile">Dockerfile (class in pytest_xdocker.docker)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerignore">Dockerignore (class in pytest_xdocker.docker)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerImage">DockerImage (class in pytest_xdocker.docker)</a>
@@ -707,6 +719,8 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.UntilProbe">UntilProbe (class in pytest_xdocker.retry)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeCommand.up">up() (pytest_xdocker.docker.DockerComposeCommand method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -724,6 +738,8 @@
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.wait_ppid">wait_ppid() (in module pytest_xdocker.docker_xrun)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.with_add">with_add() (pytest_xdocker.docker.Dockerfile method)</a>
+</li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeUpCommand.with_build">with_build() (pytest_xdocker.docker.DockerComposeUpCommand method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerBuildCommand.with_build_arg">with_build_arg() (pytest_xdocker.docker.DockerBuildCommand method)</a>
 </li>
@@ -761,6 +777,8 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRemoveCommand.with_force">with_force() (pytest_xdocker.docker.DockerRemoveCommand method)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeUpCommand.with_force_recreate">with_force_recreate() (pytest_xdocker.docker.DockerComposeUpCommand method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.with_instruction">with_instruction() (pytest_xdocker.docker.Dockerfile method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerExecCommand.with_interactive">with_interactive() (pytest_xdocker.docker.DockerExecCommand method)</a>
@@ -777,6 +795,8 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_name">with_name() (pytest_xdocker.docker.DockerRunCommand method)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeBuildCommand.with_no_cache">with_no_cache() (pytest_xdocker.docker.DockerComposeBuildCommand method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.command.Command.with_optionals">with_optionals() (pytest_xdocker.command.Command method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerignore.with_pattern">with_pattern() (pytest_xdocker.docker.Dockerignore method)</a>
@@ -785,10 +805,16 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerPortCommand.with_private_port">with_private_port() (pytest_xdocker.docker.DockerPortCommand method)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeCommand.with_project_name">with_project_name() (pytest_xdocker.docker.DockerComposeCommand method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_publish">with_publish() (pytest_xdocker.docker.DockerRunCommand method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerBuildCommand.with_pull">with_pull() (pytest_xdocker.docker.DockerBuildCommand method)</a>
+
+      <ul>
+        <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeBuildCommand.with_pull">(pytest_xdocker.docker.DockerComposeBuildCommand method)</a>
 </li>
+      </ul></li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_remove">with_remove() (pytest_xdocker.docker.DockerRunCommand method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.with_run">with_run() (pytest_xdocker.docker.Dockerfile method)</a>
