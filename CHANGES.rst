@@ -1,3 +1,10 @@
+Version 0.1.3
+-------------
+
+Released 2025-01-14
+
+-   Add timeout to process data.
+
 Version 0.1.2
 -------------
 

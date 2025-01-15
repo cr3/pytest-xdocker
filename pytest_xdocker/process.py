@@ -66,14 +66,15 @@ class ProcessData(
             "pattern",
             "args",
             "env",
+            "timeout",
         ],
     )
 ):
     """Representation of a process' data."""
 
-    def __new__(cls, pattern, args, env=None):
+    def __new__(cls, pattern, args, env=None, timeout=120):
         """Make the env optional."""
-        return super().__new__(cls, pattern, args, env)
+        return super().__new__(cls, pattern, args, env, timeout)
 
     def change(self, **changes):
         """Access for namedtuple _replace so that it doesn't look private."""
@@ -247,6 +248,7 @@ class ProcessServer(metaclass=ABCMeta):
                 pattern = process_data.pattern
                 args = process_data.args
                 env = process_data.env
+                timeout = process_data.timeout
                 max_read_lines = 100000
 
             return Starter(controldir, *args, **kwargs)
