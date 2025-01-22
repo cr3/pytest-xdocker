@@ -99,10 +99,16 @@ class DockerRunCommand(Command):
     """Run the container in the background."""
 
     with_env = OptionalArg("--env", docker_env_type)
-    """Add an environment variable to the docker container.
+    """Set environment variables.
 
     :param key: Environment key.
     :param value: Optional environment value.
+    """
+
+    with_env_file = OptionalArg("--env-file", args_type, converter=str)
+    """Read in a file of environment variables.
+
+    :param file: Path to env file.
     """
 
     with_interactive = OptionalArg("--interactive")

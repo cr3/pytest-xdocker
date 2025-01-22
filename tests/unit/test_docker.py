@@ -106,6 +106,18 @@ from pytest_xdocker.docker import (
             ["docker", "compose", "run", "--env", "key=value", "service"],
         ),
         (
+            docker.compose().run("service").with_env("key1").with_env("key2"),
+            ["docker", "compose", "run", "--env", "key1", "--env", "key2", "service"],
+        ),
+        (
+            docker.compose().run("service").with_env_file("file"),
+            ["docker", "compose", "run", "--env-file", "file", "service"],
+        ),
+        (
+            docker.compose().run("service").with_env_file("file1").with_env_file("file2"),
+            ["docker", "compose", "run", "--env-file", "file1", "--env-file", "file2", "service"],
+        ),
+        (
             docker.compose().run("service").with_interactive(),
             ["docker", "compose", "run", "--interactive", "service"],
         ),
