@@ -5,13 +5,13 @@ SIGKILL to fixtures processes. The intention is for the process to stop,
 so this script ensures the docker container is removed. The script is
 called with the same arguments passed to docker run:
 
-    docker-xrun alpine:3.14 sleep 600
+    xdocker run alpine:3.14 sleep 600
 """
 
 import logging
 import os
 import re
-import sys
+from argparse import ArgumentParser
 from contextlib import suppress
 from multiprocessing import Process
 from subprocess import STDOUT, CalledProcessError, check_call
@@ -20,13 +20,17 @@ from time import sleep
 import psutil
 from hamcrest import is_not
 
-from pytest_xdocker.command import script_to_command
-from pytest_xdocker.docker import DockerContainer, DockerRunCommand, docker
+from pytest_xdocker.command import Command, script_to_command
+from pytest_xdocker.docker import (
+    DockerCommand,
+    DockerContainer,
+    docker,
+)
 from pytest_xdocker.retry import retry
 
 log = logging.getLogger(__name__)
 
-docker_xrun = script_to_command("docker-xrun", DockerRunCommand).with_command
+xdocker = script_to_command("xdocker", DockerCommand)
 
 
 def docker_remove(name):
@@ -35,11 +39,41 @@ def docker_remove(name):
         docker.remove(name).with_force().with_volumes().execute(stderr=devnull)
 
 
-def docker_run(*args):
+def docker_call(*args, command=docker):
+    """Call Docker to run a container and return the container name."""
+    args = list(args)
+
+    # Check command.
+    if args[0] == "compose":
+        args.pop(0)
+        command = command.compose()
+
+    if "run" not in args:
+        raise ValueError(f"Only xdocker [compose] run is supported, got: {args}")
+
+    while args[0] != "run":
+        command = command.with_optionals(args.pop(0))
+
+    args.pop(0)
+    command = Command("run", command)
+
+    # Pull the latest image.
+    for arg in args:
+        if arg.endswith(":latest"):
+            docker.pull(arg).execute()
+
+    return docker_run(*args, command=command)
+
+
+def docker_run(*args, command=docker.command("run")):  # noqa: B008
     """Run a Docker container detached and return the container name."""
+
+    # Check options.
+    if "--detach" in args:
+        raise ValueError("Cannot pass --detach in xdocker arguments")
+
     try:
-        # Use docker.command() to capture the output.
-        output = docker.command("run").with_optionals("--detach").with_positionals(*args).execute(stderr=STDOUT)
+        output = command.with_optionals("--detach").with_positionals(*args).execute(stderr=STDOUT)
     except CalledProcessError as error:
         match = re.search(r'The container name "/(?P<name>[^"]+)" is already in use', error.output)
         if not match:
@@ -100,6 +134,8 @@ def monitor_container(name, interval=1):
             check_call(docker.logs(name).with_follow().with_optionals("--since", "1m"))  # noqa: S603
         except CalledProcessError:
             log.exception("--follow %s failed", name)
+        except KeyboardInterrupt:
+            docker_remove(name)
 
         container = DockerContainer(name)
         while container.status is not None:
@@ -128,22 +164,15 @@ def monitor_ppid(name, interval=1):
     os._exit(0)
 
 
-def main(argv=sys.argv[1:]):
+def main(argv=None):
     """Launch and monitor a container."""
-    # Check argv.
-    if "--detach" in argv:
-        sys.exit("Cannot pass --detach in docker arguments")
+    parser = ArgumentParser(add_help=False, usage="see docker")
+    _, args = parser.parse_known_args(argv)
 
-    # Pull the latest image.
-    for arg in argv:
-        if arg.endswith(":latest"):
-            docker.pull(arg).execute()
-
-    # Run the argv detached.
     try:
-        name = retry(docker_run, *argv).until(is_not(None), tries=10)
-    except AssertionError as error:
-        sys.exit(str(error))
+        name = retry(docker_call, *args).until(is_not(None), tries=10)
+    except Exception as error:
+        parser.error(str(error))
 
     process = Process(target=monitor_ppid, args=(name,))
     process.start()

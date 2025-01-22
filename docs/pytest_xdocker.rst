@@ -28,14 +28,6 @@ pytest\_xdocker.docker module
    :undoc-members:
    :show-inheritance:
 
-pytest\_xdocker.docker\_xrun module
------------------------------------
-
-.. automodule:: pytest_xdocker.docker_xrun
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pytest\_xdocker.fixtures module
 -------------------------------
 
@@ -80,6 +72,14 @@ pytest\_xdocker.validators module
 ---------------------------------
 
 .. automodule:: pytest_xdocker.validators
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pytest\_xdocker.xdocker module
+------------------------------
+
+.. automodule:: pytest_xdocker.xdocker
    :members:
    :undoc-members:
    :show-inheritance:

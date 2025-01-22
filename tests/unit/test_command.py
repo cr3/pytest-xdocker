@@ -219,8 +219,8 @@ def test_positional_arg_default():
 
 @pytest.mark.skipif(sys.platform != "win32", reason="parent behavior only on win32")
 def test_script_to_command_with_parent():
-    """The docker-xrun command should have a Python parent."""
-    command = script_to_command("docker-xrun")
+    """The xdockern command should have a Python parent."""
+    command = script_to_command("xdocker")
     assert "python" in command.to_string()
 
 

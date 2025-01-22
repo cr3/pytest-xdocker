@@ -1,4 +1,4 @@
-"""Integraion tests for the docker_xrun module."""
+"""Integraion tests for the xdocker module."""
 
 from contextlib import contextmanager, suppress
 from subprocess import CalledProcessError
@@ -7,13 +7,13 @@ import psutil
 from hamcrest import equal_to_ignoring_whitespace
 
 from pytest_xdocker.docker import DockerContainer, DockerInspect, docker
-from pytest_xdocker.docker_xrun import docker_xrun
 from pytest_xdocker.process import (
     Process,
     ProcessConfig,
     ProcessStarter,
 )
 from pytest_xdocker.retry import retry
+from pytest_xdocker.xdocker import xdocker
 
 
 @contextmanager
@@ -46,7 +46,7 @@ def run_process(name, directory, **data):
 def sleep_process(name, directory, seconds=60):
     """Run a process that sleeps."""
     args = (
-        docker_xrun("alpine:3.14")
+        xdocker.run("alpine:3.14")
         .with_name(name)
         .with_command(
             "sh",

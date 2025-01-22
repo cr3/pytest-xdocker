@@ -7,8 +7,8 @@ from yarl import URL
 
 from pytest_xdocker.cache import NullCache
 from pytest_xdocker.docker import DockerContainer, docker
-from pytest_xdocker.docker_xrun import docker_xrun
 from pytest_xdocker.process import Process, ProcessConfig, ProcessData, ProcessServer
+from pytest_xdocker.xdocker import xdocker
 
 
 class FakeServer(ProcessServer):
@@ -18,7 +18,7 @@ class FakeServer(ProcessServer):
         """Configure container."""
         nc = ("sh", "-c", "while true; do nc -v -l -p 4444; done")
         command = (
-            docker_xrun("alpine:3.14")
+            xdocker.run("alpine:3.14")
             .with_command(*nc)
             .with_name(controldir.basename)
             .with_publish(*self.get_cache_publish(controldir, 4444))

@@ -3,6 +3,7 @@ Version 0.2.0
 
 Released 2025-01-22
 
+-   Replace docker-xrun with xdocker for compose.
 -   Add --env-file docker [compose] run option.
 
 Version 0.1.3
