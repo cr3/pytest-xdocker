@@ -66,6 +66,14 @@ from pytest_xdocker.docker import (
             ["docker", "compose"],
         ),
         (
+            docker.compose().with_env_file("file"),
+            ["docker", "compose", "--env-file", "file"],
+        ),
+        (
+            docker.compose().with_env_file("file1").with_env_file("file2"),
+            ["docker", "compose", "--env-file", "file1", "--env-file", "file2"],
+        ),
+        (
             docker.compose().with_project_name("project"),
             ["docker", "compose", "--project-name", "project"],
         ),

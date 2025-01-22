@@ -201,6 +201,12 @@ class DockerBuildCommand(Command):
 class DockerComposeCommand(Command):
     """Shortcut for "docker compose"."""
 
+    with_env_file = OptionalArg("--env-file", args_type, converter=str)
+    """Read in a file of environment variables.
+
+    :param file: Path to env file.
+    """
+
     with_project_name = OptionalArg("--project-name", arg_type, converter=str)
     """Assign a project name to the compose configuration.
 
