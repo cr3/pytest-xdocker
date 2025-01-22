@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker &mdash; pytest-xdocker 0.1.3 documentation</title>
+  <title>pytest_xdocker &mdash; pytest-xdocker 0.2.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.3
+                0.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -252,6 +252,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_command"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_command()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_detach"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_detach()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_env"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_env()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_env_file"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_env_file()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_interactive"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_interactive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_link"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_link()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_name"><code class="docutils literal notranslate"><span class="pre">DockerRunCommand.with_name()</span></code></a></li>
@@ -286,15 +287,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker.docker_env_type"><code class="docutils literal notranslate"><span class="pre">docker_env_type()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pytest_xdocker.html#module-pytest_xdocker.docker_xrun">pytest_xdocker.docker_xrun module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.docker_xrun.wait_ppid"><code class="docutils literal notranslate"><span class="pre">wait_ppid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pytest_xdocker.html#module-pytest_xdocker.fixtures">pytest_xdocker.fixtures module</a><ul>
@@ -417,6 +409,16 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pytest_xdocker.html#module-pytest_xdocker.validators">pytest_xdocker.validators module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.validators.matches"><code class="docutils literal notranslate"><span class="pre">matches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pytest_xdocker.html#module-pytest_xdocker.xdocker">pytest_xdocker.xdocker module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_call"><code class="docutils literal notranslate"><span class="pre">docker_call()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytest_xdocker.html#pytest_xdocker.xdocker.wait_ppid"><code class="docutils literal notranslate"><span class="pre">wait_ppid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pytest_xdocker.html#module-pytest_xdocker">Module contents</a></li>

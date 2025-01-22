@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.1.3 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.2.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.3
+                0.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -96,15 +96,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker.docker_env_type"><code class="docutils literal notranslate"><span class="pre">docker_env_type()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.docker_xrun">pytest_xdocker.docker_xrun module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.docker_xrun.wait_ppid"><code class="docutils literal notranslate"><span class="pre">wait_ppid()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.fixtures">pytest_xdocker.fixtures module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.fixtures.process"><code class="docutils literal notranslate"><span class="pre">process()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.fixtures.pytest_addoption"><code class="docutils literal notranslate"><span class="pre">pytest_addoption()</span></code></a></li>
@@ -153,6 +144,16 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.validators">pytest_xdocker.validators module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.validators.matches"><code class="docutils literal notranslate"><span class="pre">matches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker.xdocker">pytest_xdocker.xdocker module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_call"><code class="docutils literal notranslate"><span class="pre">docker_call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.wait_ppid"><code class="docutils literal notranslate"><span class="pre">wait_ppid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytest_xdocker">Module contents</a></li>
@@ -980,13 +981,24 @@ a recoverable network failure.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_env">
 <span class="sig-name descname"><span class="pre">with_env</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_env" title="Permalink to this definition"></a></dt>
-<dd><p>Add an environment variable to the docker container.</p>
+<dd><p>Set environment variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> – Environment key.</p></li>
 <li><p><strong>value</strong> – Optional environment value.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerRunCommand.with_env_file">
+<span class="sig-name descname"><span class="pre">with_env_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerRunCommand.with_env_file" title="Permalink to this definition"></a></dt>
+<dd><p>Read in a file of environment variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file</strong> – Path to env file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1226,77 +1238,6 @@ list of patterns similar to the file globs of Unix shells.</p>
 <li><p><strong>key</strong> – Environment key.</p></li>
 <li><p><strong>value</strong> – Optional environment value.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="module-pytest_xdocker.docker_xrun">
-<span id="pytest-xdocker-docker-xrun-module"></span><h2>pytest_xdocker.docker_xrun module<a class="headerlink" href="#module-pytest_xdocker.docker_xrun" title="Permalink to this heading"></a></h2>
-<p>Run a docker container with pytest xprocess.</p>
-<p>The xprocess plugin extends pytest with options like –xkill which sends
-SIGKILL to fixtures processes. The intention is for the process to stop,
-so this script ensures the docker container is removed. The script is
-called with the same arguments passed to docker run:</p>
-<blockquote>
-<div><p>docker-xrun alpine:3.14 sleep 600</p>
-</div></blockquote>
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.docker_remove">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">docker_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.docker_remove" title="Permalink to this definition"></a></dt>
-<dd><p>Remove a Docker container forcefully and ignore errors.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.docker_run">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">docker_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.docker_run" title="Permalink to this definition"></a></dt>
-<dd><p>Run a Docker container detached and return the container name.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.main">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['-W',</span> <span class="pre">'-d',</span> <span class="pre">'build/doctrees',</span> <span class="pre">'docs',</span> <span class="pre">'build/html']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.main" title="Permalink to this definition"></a></dt>
-<dd><p>Launch and monitor a container.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.monitor_container">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">monitor_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.monitor_container" title="Permalink to this definition"></a></dt>
-<dd><p>Monitor that a Docker container exists.</p>
-<p>If the container is running, follow the logs. If it is stopped,
-inspect the status every interval seconds.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the docker container to monitor.</p></li>
-<li><p><strong>interval</strong> – Check the container status every interval seconds.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.monitor_ppid">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">monitor_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.monitor_ppid" title="Permalink to this definition"></a></dt>
-<dd><p>Monitor a parent PID associated with a Docker container.</p>
-<p>Wait for the parent PID to exit and then remove the associated container.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the docker container to remove.</p></li>
-<li><p><strong>interval</strong> – Wait for the parent PID every interval seconds.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytest_xdocker.docker_xrun.wait_ppid">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker_xrun.</span></span><span class="sig-name descname"><span class="pre">wait_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker_xrun.wait_ppid" title="Permalink to this definition"></a></dt>
-<dd><p>Wait for a parent PID to exit (become a zombie).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>interval</strong> – Check the parent PID status every interval seconds.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1841,6 +1782,83 @@ None to look in the process config.</p></li>
 <dt class="sig sig-object py" id="pytest_xdocker.validators.matches">
 <span class="sig-prename descclassname"><span class="pre">pytest_xdocker.validators.</span></span><span class="sig-name descname"><span class="pre">matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matcher</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.validators.matches" title="Permalink to this definition"></a></dt>
 <dd><p>Use as attr.ib(validator=…) to matcher based validation.</p>
+</dd></dl>
+
+</section>
+<section id="module-pytest_xdocker.xdocker">
+<span id="pytest-xdocker-xdocker-module"></span><h2>pytest_xdocker.xdocker module<a class="headerlink" href="#module-pytest_xdocker.xdocker" title="Permalink to this heading"></a></h2>
+<p>Run a docker container with pytest xprocess.</p>
+<p>The xprocess plugin extends pytest with options like –xkill which sends
+SIGKILL to fixtures processes. The intention is for the process to stop,
+so this script ensures the docker container is removed. The script is
+called with the same arguments passed to docker run:</p>
+<blockquote>
+<div><p>xdocker run alpine:3.14 sleep 600</p>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.docker_call">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">docker_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DockerCommand(['docker'])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.docker_call" title="Permalink to this definition"></a></dt>
+<dd><p>Call Docker to run a container and return the container name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.docker_remove">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">docker_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.docker_remove" title="Permalink to this definition"></a></dt>
+<dd><p>Remove a Docker container forcefully and ignore errors.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.docker_run">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">docker_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Command(['docker',</span> <span class="pre">'run'])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.docker_run" title="Permalink to this definition"></a></dt>
+<dd><p>Run a Docker container detached and return the container name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.main">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.main" title="Permalink to this definition"></a></dt>
+<dd><p>Launch and monitor a container.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.monitor_container">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">monitor_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.monitor_container" title="Permalink to this definition"></a></dt>
+<dd><p>Monitor that a Docker container exists.</p>
+<p>If the container is running, follow the logs. If it is stopped,
+inspect the status every interval seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the docker container to monitor.</p></li>
+<li><p><strong>interval</strong> – Check the container status every interval seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.monitor_ppid">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">monitor_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.monitor_ppid" title="Permalink to this definition"></a></dt>
+<dd><p>Monitor a parent PID associated with a Docker container.</p>
+<p>Wait for the parent PID to exit and then remove the associated container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the docker container to remove.</p></li>
+<li><p><strong>interval</strong> – Wait for the parent PID every interval seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.wait_ppid">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">wait_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.wait_ppid" title="Permalink to this definition"></a></dt>
+<dd><p>Wait for a parent PID to exit (become a zombie).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>interval</strong> – Check the parent PID status every interval seconds.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

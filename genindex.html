@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pytest-xdocker 0.1.3 documentation</title>
+  <title>Index &mdash; pytest-xdocker 0.2.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.1.3
+                0.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -187,11 +187,13 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerImageDigest.digest">digest (pytest_xdocker.docker.DockerImageDigest attribute)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_call">docker_call() (in module pytest_xdocker.xdocker)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.docker_env_type">docker_env_type() (in module pytest_xdocker.docker)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.docker_remove">docker_remove() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_remove">docker_remove() (in module pytest_xdocker.xdocker)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.docker_run">docker_run() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.docker_run">docker_run() (in module pytest_xdocker.xdocker)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerBuildCommand">DockerBuildCommand (class in pytest_xdocker.docker)</a>
 </li>
@@ -415,7 +417,7 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.main">main() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.main">main() (in module pytest_xdocker.xdocker)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.validators.matches">matches() (in module pytest_xdocker.validators)</a>
 </li>
@@ -435,8 +437,6 @@
 </li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.docker">pytest_xdocker.docker</a>
 </li>
-        <li><a href="pytest_xdocker.html#module-pytest_xdocker.docker_xrun">pytest_xdocker.docker_xrun</a>
-</li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.fixtures">pytest_xdocker.fixtures</a>
 </li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.lock">pytest_xdocker.lock</a>
@@ -449,12 +449,14 @@
 </li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.validators">pytest_xdocker.validators</a>
 </li>
+        <li><a href="pytest_xdocker.html#module-pytest_xdocker.xdocker">pytest_xdocker.xdocker</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.monitor_container">monitor_container() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.monitor_container">monitor_container() (in module pytest_xdocker.xdocker)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.monitor_ppid">monitor_ppid() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.monitor_ppid">monitor_ppid() (in module pytest_xdocker.xdocker)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -563,13 +565,6 @@
 </li>
       </ul></li>
       <li>
-    pytest_xdocker.docker_xrun
-
-      <ul>
-        <li><a href="pytest_xdocker.html#module-pytest_xdocker.docker_xrun">module</a>
-</li>
-      </ul></li>
-      <li>
     pytest_xdocker.fixtures
 
       <ul>
@@ -609,6 +604,13 @@
 
       <ul>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.validators">module</a>
+</li>
+      </ul></li>
+      <li>
+    pytest_xdocker.xdocker
+
+      <ul>
+        <li><a href="pytest_xdocker.html#module-pytest_xdocker.xdocker">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -739,7 +741,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker_xrun.wait_ppid">wait_ppid() (in module pytest_xdocker.docker_xrun)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.xdocker.wait_ppid">wait_ppid() (in module pytest_xdocker.xdocker)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.with_add">with_add() (pytest_xdocker.docker.Dockerfile method)</a>
 </li>
@@ -777,6 +779,8 @@
         <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_env">(pytest_xdocker.docker.DockerRunCommand method)</a>
 </li>
       </ul></li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.with_env_file">with_env_file() (pytest_xdocker.docker.DockerRunCommand method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.with_expose">with_expose() (pytest_xdocker.docker.Dockerfile method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerBuildCommand.with_file">with_file() (pytest_xdocker.docker.DockerBuildCommand method)</a>
