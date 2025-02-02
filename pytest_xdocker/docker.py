@@ -202,9 +202,15 @@ class DockerComposeCommand(Command):
     """Shortcut for "docker compose"."""
 
     with_env_file = OptionalArg("--env-file", args_type, converter=str)
-    """Read in a file of environment variables.
+    """Specify an alternate environment file.
 
     :param file: Path to env file.
+    """
+
+    with_file = OptionalArg("--env-file", args_type, converter=str)
+    """Compose configuration files.
+
+    :param file: Path to configuration file.
     """
 
     with_project_name = OptionalArg("--project-name", arg_type, converter=str)

@@ -1,3 +1,10 @@
+Version 0.2.2
+-------------
+
+Released 2025-03-07
+
+-   Add --file docker compose option.
+
 Version 0.2.1
 -------------
 
