@@ -207,7 +207,7 @@ class DockerComposeCommand(Command):
     :param file: Path to env file.
     """
 
-    with_file = OptionalArg("--env-file", args_type, converter=str)
+    with_file = OptionalArg("--file", args_type, converter=str)
     """Compose configuration files.
 
     :param file: Path to configuration file.

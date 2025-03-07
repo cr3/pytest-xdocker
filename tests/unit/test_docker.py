@@ -99,7 +99,7 @@ from pytest_xdocker.docker import (
         ),
         (
             docker.compose().build("service").with_pull(),
-            ["docker", "compose", "build", "--pull"],
+            ["docker", "compose", "build", "--pull", "service"],
         ),
         (
             docker.compose().run("service"),
@@ -305,7 +305,7 @@ from pytest_xdocker.docker import (
 )
 def test_docker(command, args):
     """The docker options should equal the corresponding list of strings."""
-    assert_that(command, args)
+    assert command == args
 
 
 @pytest.mark.parametrize(
