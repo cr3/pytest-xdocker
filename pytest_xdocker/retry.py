@@ -13,7 +13,7 @@ from abc import ABCMeta, abstractmethod
 from functools import wraps
 from time import sleep
 
-import attr
+from attrs import define, field
 from hamcrest import (
     greater_than_or_equal_to,
 )
@@ -57,14 +57,14 @@ def retry_catching(*args, **kwargs):
 NEVER = object()
 
 
-@attr.s(slots=True)
+@define
 class Calling:
     """Function call configuration that can be repeated."""
 
-    func = attr.ib()
-    args = attr.ib(default=attr.Factory(tuple))
-    kwargs = attr.ib(default=attr.Factory(dict))
-    returned = attr.ib(default=NEVER)
+    func = field()
+    args = field(factory=tuple)
+    kwargs = field(factory=dict)
+    returned = field(default=NEVER)
 
     def __call__(self):
         """Invoke the configured function."""
@@ -72,11 +72,11 @@ class Calling:
         return self.returned
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class Retry:
     """Retry the given function until the expected result."""
 
-    func = attr.ib()
+    func = field()
 
     def until(self, value, tries=30, delay=1):
         """Return a poller with a value check probe."""
@@ -89,13 +89,13 @@ class Retry:
         return Poller(tries, delay).check(probe)
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class Poller:
     """Poller for retrying an operation."""
 
-    tries = attr.ib(validator=matches(greater_than_or_equal_to(0)))
-    delay = attr.ib(validator=matches(greater_than_or_equal_to(0)))
-    sleeper = attr.ib(default=sleep)
+    tries = field(validator=matches(greater_than_or_equal_to(0)))
+    delay = field(validator=matches(greater_than_or_equal_to(0)))
+    sleeper = field(default=sleep)
 
     def check(self, probe):
         """Poll until the probe succeeds."""
@@ -125,12 +125,12 @@ class Probe(metaclass=ABCMeta):
         """Truth value when probing."""
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class UntilProbe(Probe):
     """Probe to expect a value from a retry."""
 
-    func = attr.ib()
-    value = attr.ib()
+    func = field()
+    value = field()
 
     def __call__(self):
         """Match the result of the function with the given value."""
@@ -145,13 +145,13 @@ class UntilProbe(Probe):
         return f"Probing: {self.func}\n Expecting: {self.value!r}"
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class CatchingProbe(Probe):
     """Probe to ignore an exception while retrying."""
 
-    func = attr.ib()
-    exception = attr.ib()
-    pattern = attr.ib(default="")
+    func = field()
+    exception = field()
+    pattern = field(default="")
 
     def __call__(self):
         """Match the exception thrown."""
@@ -170,13 +170,13 @@ class CatchingProbe(Probe):
         return f"Probing: {self.func}\nCatching: {self.exception}"
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class ProbeResult:
     """Result of a probe."""
 
-    success = attr.ib()
-    returned = attr.ib(default=None)
-    raised = attr.ib(default=None)
+    success = field()
+    returned = field(default=None)
+    raised = field(default=None)
 
     def __bool__(self):
         return self.success

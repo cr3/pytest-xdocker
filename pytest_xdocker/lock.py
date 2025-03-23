@@ -22,7 +22,7 @@ except ImportError:
         msvcrt.locking(fd, msvcrt.LK_UNLCK, 0)
 
 
-import attr
+from attrs import define, field
 
 
 class AlreadyLockedError(Exception):
@@ -65,15 +65,15 @@ class BaseLock(metaclass=ABCMeta):
         return False
 
 
-@attr.s(slots=True)
+@define
 class FileLock(BaseLock):
     """Advisory file locking.
 
     :param lockfile: Path to the lock file.
     """
 
-    _lockfile = attr.ib(converter=str)
-    _lockfd = attr.ib(default=None)
+    _lockfile = field(converter=str)
+    _lockfd = field(default=None)
 
     @property
     def is_locked(self):
@@ -98,11 +98,11 @@ class FileLock(BaseLock):
         self._lockfd = None
 
 
-@attr.s(slots=True)
+@define
 class MemoryLock(BaseLock):
     """In-memory locking."""
 
-    _is_locked = attr.ib(default=False)
+    _is_locked = field(default=False)
 
     @property
     def is_locked(self):
@@ -124,7 +124,7 @@ class MemoryLock(BaseLock):
         self._is_locked = False
 
 
-@attr.s(slots=True)
+@define
 class NullLock(BaseLock):
     """Null pattern implementation."""
 

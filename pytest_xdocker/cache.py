@@ -5,7 +5,7 @@ import json
 from abc import ABCMeta, abstractmethod
 from pathlib import Path
 
-import attr
+from attrs import define, field
 
 
 def cache_encode(data):
@@ -34,7 +34,7 @@ class Cache(metaclass=ABCMeta):
         """Save value for the given key."""
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class FileCache(Cache):
     """Lightweight implementation of `pytest.cache`.
 
@@ -43,9 +43,9 @@ class FileCache(Cache):
     :param decode: Decoding function, defaults to `cache_decode`
     """
 
-    _cachedir = attr.ib(converter=Path)
-    encode = attr.ib(default=cache_encode)
-    decode = attr.ib(default=cache_decode)
+    _cachedir = field(converter=Path)
+    encode = field(default=cache_encode)
+    decode = field(default=cache_decode)
 
     def _get_value_path(self, key):
         path = self._cachedir / "v" / key
@@ -68,11 +68,11 @@ class FileCache(Cache):
         path.write_bytes(payload)
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class MemoryCache(Cache):
     """Memory cache."""
 
-    _memory = attr.ib(default=attr.Factory(dict))
+    _memory = field(factory=dict)
 
     def get(self, key, default):
         """Read from dict."""
@@ -83,7 +83,7 @@ class MemoryCache(Cache):
         self._memory[key] = value
 
 
-@attr.s(frozen=True, slots=True)
+@define(frozen=True)
 class NullCache(Cache):
     """Null cache.
 

@@ -21,17 +21,17 @@ from itertools import chain
 from shlex import quote
 from subprocess import check_output
 
-import attr
+from attrs import define, evolve, field
 
 
-@attr.s(eq=False, frozen=True, repr=False, slots=True)
+@define(eq=False, frozen=True, repr=False)
 class Command(Iterable):
     """Manages a shell command."""
 
-    _command = attr.ib(converter=str)
-    _parent = attr.ib(default=iter(()))
-    _positionals = attr.ib(factory=list)
-    _optionals = attr.ib(factory=list)
+    _command = field(converter=str)
+    _parent = field(default=iter(()))
+    _positionals = field(factory=list)
+    _optionals = field(factory=list)
 
     def __eq__(self, other):
         return list(self) == other
@@ -64,17 +64,17 @@ class Command(Iterable):
 
     def with_positionals(self, *positionals):
         """Add positional args."""
-        return attr.evolve(self, positionals=self._positionals + list(positionals))
+        return evolve(self, positionals=self._positionals + list(positionals))
 
     def with_optionals(self, *optionals):
         """Add optional args."""
-        return attr.evolve(self, optionals=self._optionals + list(optionals))
+        return evolve(self, optionals=self._optionals + list(optionals))
 
     def reparent(self, parent=None):
         """Add a wrapping command."""
         if parent is None:
             parent = iter(())
-        return attr.evolve(self, parent=parent)
+        return evolve(self, parent=parent)
 
     def execute(self, **kwargs):
         """Run the command."""

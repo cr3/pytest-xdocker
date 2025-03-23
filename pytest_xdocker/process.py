@@ -8,9 +8,9 @@ from contextlib import contextmanager
 from functools import partial
 from pathlib import Path
 
-import attr
 import psutil
 import py
+from attrs import make_class
 from pytest_cache import getrootdir as get_cache_root_dir
 from xprocess import ProcessStarter, XProcess, XProcessInfo
 
@@ -267,7 +267,7 @@ class ProcessServer(metaclass=ABCMeta):
 
 # Fake ProcessConfig that matches the config at the pytest version pytest-cache
 # is expecting
-pytest_cache_config_compat = attr.make_class(
+pytest_cache_config_compat = make_class(
     "ProcessConfig",
     [
         "inicfg",

@@ -15,7 +15,7 @@ from contextlib import suppress
 from pathlib import Path
 from subprocess import CalledProcessError, run
 
-import attr
+from attrs import define, field
 
 from pytest_xdocker.command import (
     Command,
@@ -473,33 +473,33 @@ class DockerImage(metaclass=ABCMeta):
         return not self.__eq__(other)
 
 
-@attr.s(eq=False, frozen=True, slots=True)
+@define(eq=False, frozen=True)
 class DockerImageId(DockerImage):
     """Representation of a docker image id."""
 
-    identifier = attr.ib()
+    identifier = field()
 
     def __str__(self):
         return self.identifier
 
 
-@attr.s(eq=False, frozen=True, slots=True)
+@define(eq=False, frozen=True)
 class DockerImageDigest(DockerImage):
     """Representation of a image:tag@digest."""
 
-    name = attr.ib()
-    digest = attr.ib()
+    name = field()
+    digest = field()
 
     def __str__(self):
         return f"{self.name}@{self.digest}"
 
 
-@attr.s(eq=False, frozen=True, slots=True)
+@define(eq=False, frozen=True)
 class DockerImageTag(DockerImage):
     """Representation of a image:tag."""
 
-    name = attr.ib()
-    tag = attr.ib(default="latest")
+    name = field()
+    tag = field(default="latest")
 
     def __str__(self):
         return f"{self.name}:{self.tag}"
@@ -558,11 +558,11 @@ class DockerNetworkInspect(DockerInspect):
         return docker.command("network").with_positionals("inspect", self.name)
 
 
-@attr.s(slots=True)
+@define
 class DockerText(Iterable):
     """Tool to write a text file."""
 
-    _lines = attr.ib(default=attr.Factory(list), init=False)
+    _lines = field(factory=list, init=False)
 
     def __iter__(self):
         return iter(self._lines)
@@ -590,11 +590,11 @@ class DockerText(Iterable):
         Path(path).write_text(self.__str__())
 
 
-@attr.s(slots=True)
+@define
 class Dockerfile(DockerText):
     """Tool to write a Dockerfile."""
 
-    image = attr.ib()
+    image = field()
 
     def __attrs_post_init__(self):
         self.with_instruction("FROM", str(self.image))

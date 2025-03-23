@@ -1,17 +1,18 @@
 """Attr validators."""
 
-import attr
+from attrs import define, field
 from hamcrest import assert_that
 
 
 def matches(matcher):
-    """Use as attr.ib(validator=...) to matcher based validation."""
+    """Use as field(validator=...) to matcher based validation."""
     return _MatchesValidator(matcher)
 
 
-@attr.s(frozen=True, repr=False, slots=True)
+@define(frozen=True, repr=False)
 class _MatchesValidator:
-    matcher = attr.ib()
+
+    matcher = field()
 
     def __call__(self, inst, attr, value):
         assert_that(value, self.matcher)
