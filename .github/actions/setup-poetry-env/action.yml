@@ -14,6 +14,10 @@ inputs:
      required: false
      description: "Poetry version to use"
      default: "1.8.3"
+   working-directory:
+     required: false
+     description: "Working directory"
+     default: "."
 
 runs:
   using: "composite"
@@ -33,11 +37,12 @@ runs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: .venv
+        path: ${{ inputs.working-directory }}/.venv
         key: venv-${{ runner.os }}-${{ inputs.python-version }}-${{ inputs.poetry-options }}-${{ hashFiles('poetry.lock') }}
 
     - name: Install dependencies
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: |
         poetry install ${{ inputs.poetry-options }}
         touch .venv
