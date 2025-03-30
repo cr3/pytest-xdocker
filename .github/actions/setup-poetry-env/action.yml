@@ -10,6 +10,10 @@ inputs:
      required: false
      description: "Poetry options to pass"
      default: "--no-interaction"
+   poetry-version:
+     required: false
+     description: "Poetry version to use"
+     default: "1.8.3"
 
 runs:
   using: "composite"
@@ -23,6 +27,7 @@ runs:
       uses: snok/install-poetry@v1
       with:
         virtualenvs-in-project: true
+        version: ${{ inputs.poetry-version }}
 
     - name: Load cached venv
       id: cached-poetry-dependencies
