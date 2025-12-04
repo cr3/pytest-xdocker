@@ -1,3 +1,10 @@
+Version 0.2.6
+-------------
+
+Released 2025-12-04
+
+-   Replace netifaces with netifaces2
+
 Version 0.2.5
 -------------
 

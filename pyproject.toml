@@ -10,7 +10,7 @@ repository = "https://github.com/cr3/pytest-xdocker"
 requires-python = ">=3.9,<4.0"
 dependencies = [
     "attrs (>=25.3.0,<26.0.0)",
-    "netifaces (>=0.11.0,<1.0.0)",
+    "netifaces2 (>=0.0.22,<1.0.0)",
     "psutil (>=6.1.1,<7.0.0)",
     "pyhamcrest (>=2.1.0,<3.0.0)",
     "pytest (>=8.0.0,<9.0.0)",
