@@ -1,3 +1,10 @@
+Version 0.2.7
+-------------
+
+Released 2025-12-08
+
+-   Bump pytest to 9.0.0
+
 Version 0.2.6
 -------------
 
