@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.2.6 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.2.7 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.2.6
+                0.2.7
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -1859,13 +1859,14 @@ inspect the status every interval seconds.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytest_xdocker.xdocker.monitor_ppid">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">monitor_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.monitor_ppid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">monitor_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ppid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.monitor_ppid" title="Permalink to this definition"></a></dt>
 <dd><p>Monitor a parent PID associated with a Docker container.</p>
 <p>Wait for the parent PID to exit and then remove the associated container.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – Name of the docker container to remove.</p></li>
+<li><p><strong>ppid</strong> – The parent PID to monitor. If None, uses os.getppid().</p></li>
 <li><p><strong>interval</strong> – Wait for the parent PID every interval seconds.</p></li>
 </ul>
 </dd>
@@ -1874,11 +1875,14 @@ inspect the status every interval seconds.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytest_xdocker.xdocker.wait_ppid">
-<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">wait_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.wait_ppid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">wait_ppid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ppid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.wait_ppid" title="Permalink to this definition"></a></dt>
 <dd><p>Wait for a parent PID to exit (become a zombie).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>interval</strong> – Check the parent PID status every interval seconds.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ppid</strong> – The parent PID to monitor. If None, uses os.getppid().</p></li>
+<li><p><strong>interval</strong> – Check the parent PID status every interval seconds.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
