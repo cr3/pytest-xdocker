@@ -46,7 +46,7 @@ def run_process(name, directory, **data):
 def sleep_process(name, directory, seconds=60):
     """Run a process that sleeps."""
     args = (
-        xdocker.run("alpine:3.14")
+        xdocker.run("alpine:3.21")
         .with_name(name)
         .with_command(
             "sh",

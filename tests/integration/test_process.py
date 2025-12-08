@@ -18,7 +18,7 @@ class FakeServer(ProcessServer):
         """Configure container."""
         nc = ("sh", "-c", "while true; do nc -v -l -p 4444; done")
         command = (
-            xdocker.run("alpine:3.14")
+            xdocker.run("alpine:3.21")
             .with_command(*nc)
             .with_name(controldir.basename)
             .with_publish(*self.get_cache_publish(controldir, 4444))
@@ -47,4 +47,4 @@ def fake_server(unique):
 
 def test_process_server_from_container(fake_server):
     """A ProcessServer should also be reacheable from other containers."""
-    (docker.run("alpine:3.14").with_command("nc", fake_server.host, str(fake_server.port)).with_remove().execute())
+    (docker.run("alpine:3.21").with_command("nc", fake_server.host, str(fake_server.port)).with_remove().execute())
