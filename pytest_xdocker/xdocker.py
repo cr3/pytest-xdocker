@@ -89,13 +89,15 @@ def docker_run(*args, command=docker.command("run")):  # noqa: B008
     return match.group("name")
 
 
-def wait_ppid(interval=1):
+def wait_ppid(ppid=None, interval=1):
     """
     Wait for a parent PID to exit (become a zombie).
 
+    :param ppid: The parent PID to monitor. If None, uses os.getppid().
     :param interval: Check the parent PID status every interval seconds.
     """
-    ppid = os.getppid()
+    if ppid is None:
+        ppid = os.getppid()
     while True:
         try:
             if psutil.Process(ppid).status() == psutil.STATUS_ZOMBIE:
@@ -148,17 +150,18 @@ def monitor_container(name, interval=1):
             break
 
 
-def monitor_ppid(name, interval=1):
+def monitor_ppid(name, ppid=None, interval=1):
     """
     Monitor a parent PID associated with a Docker container.
 
     Wait for the parent PID to exit and then remove the associated container.
 
     :param name: Name of the docker container to remove.
+    :param ppid: The parent PID to monitor. If None, uses os.getppid().
     :param interval: Wait for the parent PID every interval seconds.
     """
     with suppress(KeyboardInterrupt):
-        wait_ppid(interval)
+        wait_ppid(ppid, interval)
 
     docker_remove(name)
     os._exit(0)
@@ -174,7 +177,10 @@ def main(argv=None):
     except Exception as error:
         parser.error(str(error))
 
-    process = Process(target=monitor_ppid, args=(name,))
+    # Pass the current PID so monitor_ppid can watch the correct parent
+    # (important for Python 3.14+ where forkserver is the default)
+    current_pid = os.getpid()
+    process = Process(target=monitor_ppid, args=(name, current_pid))
     process.start()
     monitor_container(name)
     process.terminate()
