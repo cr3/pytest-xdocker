@@ -1,3 +1,10 @@
+Version 0.2.8
+-------------
+
+Released 2025-03-27
+
+-   Replace poetry with uv
+
 Version 0.2.7
 -------------
 

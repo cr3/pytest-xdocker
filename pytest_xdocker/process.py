@@ -153,10 +153,7 @@ class ProcessInfo(XProcessInfo):
         except psutil.NoSuchProcess:
             return False
 
-        if self.stime != int(proc.create_time()):
-            return False
-
-        return True
+        return self.stime == int(proc.create_time())
 
 
 class Process(XProcess):

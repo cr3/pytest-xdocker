@@ -30,7 +30,7 @@ class Cache(metaclass=ABCMeta):
         """Return cached value for the given key or the default."""
 
     @abstractmethod
-    def set(self, key, value):  # noqa: A003
+    def set(self, key, value):
         """Save value for the given key."""
 
 
@@ -61,7 +61,7 @@ class FileCache(Cache):
         else:
             return default
 
-    def set(self, key, value):  # noqa: A003
+    def set(self, key, value):
         """Write to file."""
         path = self._get_value_path(key)
         payload = self.encode(value)
@@ -78,7 +78,7 @@ class MemoryCache(Cache):
         """Read from dict."""
         return self._memory.get(key, default)
 
-    def set(self, key, value):  # noqa: A003
+    def set(self, key, value):
         """Write the value to dict."""
         self._memory[key] = value
 
@@ -94,5 +94,5 @@ class NullCache(Cache):
         """Noop."""
         return default
 
-    def set(self, key, value):  # noqa: A003
+    def set(self, key, value):
         """Noop."""

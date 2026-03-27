@@ -2,6 +2,7 @@
 
 import logging
 import platform
+from typing import ClassVar
 
 import pytest
 from hamcrest import (
@@ -25,7 +26,7 @@ def test_process_startup_failure(tmp_path, unique):
         shell = "powershell" if platform.system() == "Windows" else "sh"
 
         class Starter(ProcessStarter):
-            args = [
+            args: ClassVar = [
                 shell,
                 "-c",
                 'echo "Booting..."; sleep 5; echo "Ready!"',
