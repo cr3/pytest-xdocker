@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.2.8 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.2.9 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.2.8
+                0.2.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -150,6 +150,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_call"><code class="docutils literal notranslate"><span class="pre">docker_call()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_remove"><code class="docutils literal notranslate"><span class="pre">docker_remove()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_run"><code class="docutils literal notranslate"><span class="pre">docker_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.docker_up"><code class="docutils literal notranslate"><span class="pre">docker_up()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.monitor_container"><code class="docutils literal notranslate"><span class="pre">monitor_container()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytest_xdocker.xdocker.monitor_ppid"><code class="docutils literal notranslate"><span class="pre">monitor_ppid()</span></code></a></li>
@@ -1833,6 +1834,12 @@ called with the same arguments passed to docker run:</p>
 <dt class="sig sig-object py" id="pytest_xdocker.xdocker.docker_run">
 <span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">docker_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Command(['docker',</span> <span class="pre">'run'])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.docker_run" title="Permalink to this definition"></a></dt>
 <dd><p>Run a Docker container detached and return the container name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytest_xdocker.xdocker.docker_up">
+<span class="sig-prename descclassname"><span class="pre">pytest_xdocker.xdocker.</span></span><span class="sig-name descname"><span class="pre">docker_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.xdocker.docker_up" title="Permalink to this definition"></a></dt>
+<dd><p>Start a Docker Compose service detached and return the container name.</p>
 </dd></dl>
 
 <dl class="py function">
