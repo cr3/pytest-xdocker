@@ -14,6 +14,7 @@ from pytest_xdocker.xdocker import (
     docker_call,
     docker_remove,
     docker_run,
+    docker_up,
     main,
     monitor_container,
 )
@@ -26,7 +27,7 @@ def test_docker_remove_non_existing(unique):
 
 
 def test_docker_call(unique):
-    """Calling a command other than run should raise."""
+    """Calling a command other than run or up should raise."""
     with pytest.raises(ValueError):
         docker_call("rm")
 
@@ -53,6 +54,38 @@ def test_docker_run_already_in_use(unique):
     )
     result = docker_run(command=command)
     assert result is None
+
+
+def test_docker_run_already_in_use_no_slash(unique):
+    """Running a docker container already in use without leading slash should return None."""
+    name = unique("text")
+    command = Mock(
+        with_optionals=Mock(
+            side_effect=CalledProcessError(1, "", output=f'The container name "{name}" is already in use')
+        )
+    )
+    result = docker_run(command=command)
+    assert result is None
+
+
+@patch("pytest_xdocker.xdocker.Command")
+def test_docker_up(mock_command, unique):
+    """Starting a compose service with up should return its container name."""
+    name = unique("text")
+    up_instance = Mock()
+    up_instance.with_optionals.return_value = up_instance
+    up_instance.with_positionals.return_value = up_instance
+
+    ps_instance = Mock()
+    ps_instance.with_optionals.return_value = ps_instance
+    ps_instance.with_positionals.return_value = ps_instance
+    ps_instance.execute.return_value = f"{name}\n"
+
+    mock_command.side_effect = [up_instance, ps_instance]
+
+    command = Mock()
+    result = docker_up("--build", "mysql", command=command)
+    assert result == name
 
 
 @patch("pytest_xdocker.xdocker.DockerContainer")

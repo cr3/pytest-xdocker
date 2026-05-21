@@ -48,21 +48,28 @@ def docker_call(*args, command=docker):
         args.pop(0)
         command = command.compose()
 
-    if "run" not in args:
-        raise ValueError(f"Only xdocker [compose] run is supported, got: {args}")
+    if "run" in args:
+        while args[0] != "run":
+            command = command.with_optionals(args.pop(0))
 
-    while args[0] != "run":
-        command = command.with_optionals(args.pop(0))
+        args.pop(0)
+        command = Command("run", command)
 
-    args.pop(0)
-    command = Command("run", command)
+        # Pull the latest image.
+        for arg in args:
+            if arg.endswith(":latest"):
+                docker.pull(arg).execute()
 
-    # Pull the latest image.
-    for arg in args:
-        if arg.endswith(":latest"):
-            docker.pull(arg).execute()
+        return docker_run(*args, command=command)
 
-    return docker_run(*args, command=command)
+    if "up" in args:
+        while args[0] != "up":
+            command = command.with_optionals(args.pop(0))
+
+        args.pop(0)
+        return docker_up(*args, command=command)
+
+    raise ValueError(f"Only xdocker [compose] run/up is supported, got: {args}")
 
 
 def docker_run(*args, command=docker.command("run")):  # noqa: B008
@@ -75,7 +82,7 @@ def docker_run(*args, command=docker.command("run")):  # noqa: B008
     try:
         output = command.with_optionals("--detach").with_positionals(*args).execute(stderr=STDOUT)
     except CalledProcessError as error:
-        match = re.search(r'The container name "/(?P<name>[^"]+)" is already in use', error.output)
+        match = re.search(r'The container name "/?(?P<name>[^"]+)" is already in use', error.output)
         if not match:
             raise
 
@@ -87,6 +94,23 @@ def docker_run(*args, command=docker.command("run")):  # noqa: B008
         raise Exception(f"Unpexpected docker output: {output}")
 
     return match.group("name")
+
+
+def docker_up(*args, command):
+    """Start a Docker Compose service detached and return the container name."""
+    options = [a for a in args if a.startswith("-")]
+    services = [a for a in args if not a.startswith("-")]
+
+    up_command = Command("up", command).with_optionals("-d", *options).with_positionals(*services)
+    up_command.execute(stderr=STDOUT)
+
+    # Get the container name from docker compose ps.
+    ps_command = Command("ps", command).with_optionals("--format", "{{.Name}}").with_positionals(*services)
+    output = ps_command.execute(stderr=STDOUT).strip()
+    if not output:
+        return None
+
+    return output.splitlines()[-1]
 
 
 def wait_ppid(ppid=None, interval=1):

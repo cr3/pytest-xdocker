@@ -1,3 +1,10 @@
+Version 0.2.9
+-------------
+
+Released 2025-05-20
+
+-   Add docker up.
+
 Version 0.2.8
 -------------
 
