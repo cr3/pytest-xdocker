@@ -330,13 +330,19 @@ class DockerRemoveCommand(Command):
 class DockerContainer:
     """Manager a docker container."""
 
-    def __init__(self, name, inspect=None):
-        """Inint."""
+    def __init__(self, name, inspect=None, network=None):
+        """Inint.
+
+        :param name: Container name.
+        :param inspect: Optional `DockerInspect`, defaults to inspecting name.
+        :param network: Optional network name used to resolve the IP.
+        """
         if inspect is None:
             inspect = DockerInspect(name)
 
         self.name = name
         self.inspect = inspect
+        self.network = network
 
     def _port_to_int(self, port):
         pattern = r"(?P<port>\d+)/tcp"
@@ -358,9 +364,16 @@ class DockerContainer:
             return {}
 
     @property
-    def exposed_ip(self):
-        """Return the IP exposed to other containers."""
-        return self.inspect.get("NetworkSettings", "IPAddress")
+    def ip(self):
+        """Return the IP on the network, or on the only network."""
+        networks = self.inspect.get("NetworkSettings", "Networks") or {}
+        if self.network in networks:
+            return networks[self.network]["IPAddress"]
+
+        if len(networks) != 1:
+            raise AssertionError(f"Expecting network {self.network!r} or one network, got {list(networks)}")
+
+        return next(iter(networks.values()))["IPAddress"]
 
     @property
     def exposed_port(self):

@@ -1,3 +1,10 @@
+Version 0.3.0
+-------------
+
+-   Add ComposeServer and find_compose_files.
+-   Replace DockerContainer.exposed_ip with DockerContainer.ip.
+-   Deprecate Python 3.10, add Python 3.15.
+
 Version 0.2.9
 -------------
 

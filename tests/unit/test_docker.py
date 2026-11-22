@@ -344,19 +344,49 @@ def test_container_env():
     assert container.env["foo"] == "bar"
 
 
-def test_container_exposed_ip():
-    """A container exposed IP should return NetworkSettings/IPaddress."""
-    ip = "1.2.3.4"
-    inspect = DockerInspect(
-        "name",
-        {
-            "NetworkSettings": {
-                "IPAddress": ip,
-            },
-        },
-    )
+@pytest.mark.parametrize(
+    "network, networks, expected",
+    [
+        pytest.param(
+            "b",
+            {"a": {"IPAddress": "1.1.1.1"}, "b": {"IPAddress": "2.2.2.2"}},
+            "2.2.2.2",
+            id="named network",
+        ),
+        pytest.param(
+            None,
+            {"a": {"IPAddress": "1.1.1.1"}},
+            "1.1.1.1",
+            id="only network",
+        ),
+        pytest.param(
+            "missing",
+            {"a": {"IPAddress": "1.1.1.1"}},
+            "1.1.1.1",
+            id="missing network falls back to only network",
+        ),
+    ],
+)
+def test_container_ip(network, networks, expected):
+    """A container IP should come from the named network or the only one."""
+    inspect = DockerInspect("name", {"NetworkSettings": {"Networks": networks}})
+    container = DockerContainer("name", inspect, network=network)
+    assert container.ip == expected
+
+
+@pytest.mark.parametrize(
+    "networks",
+    [
+        pytest.param({}, id="no network"),
+        pytest.param({"a": {"IPAddress": "1.1.1.1"}, "b": {"IPAddress": "2.2.2.2"}}, id="many networks"),
+    ],
+)
+def test_container_ip_error(networks):
+    """A container IP should raise without a single network to choose."""
+    inspect = DockerInspect("name", {"NetworkSettings": {"Networks": networks}})
     container = DockerContainer("name", inspect)
-    assert container.exposed_ip == ip
+    with pytest.raises(AssertionError):
+        container.ip  # noqa: B018
 
 
 def test_container_exposed_port():

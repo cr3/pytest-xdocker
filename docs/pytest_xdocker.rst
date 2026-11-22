@@ -20,6 +20,14 @@ pytest\_xdocker.command module
    :undoc-members:
    :show-inheritance:
 
+pytest\_xdocker.compose module
+------------------------------
+
+.. automodule:: pytest_xdocker.compose
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pytest\_xdocker.docker module
 -----------------------------
 
