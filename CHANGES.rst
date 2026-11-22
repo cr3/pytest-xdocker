@@ -1,3 +1,9 @@
+Version 0.3.0
+-------------
+
+-   Add ComposeServer and find_compose_files.
+-   Replace DockerContainer.exposed_ip with DockerContainer.ip.
+
 Version 0.2.9
 -------------
 
