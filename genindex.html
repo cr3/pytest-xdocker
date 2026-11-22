@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pytest-xdocker 0.3.0 documentation</title>
+  <title>Index &mdash; pytest-xdocker 0.3.1.dev0+g562b0351c.d20261122 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.3.0
+                0.3.1.dev0+g562b0351c.d20261122
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -171,6 +171,8 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.compose">compose() (pytest_xdocker.docker.DockerCommand method)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.compose.ComposeServer">ComposeServer (class in pytest_xdocker.compose)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.command.const_type">const_type() (in module pytest_xdocker.command)</a>
 </li>
   </ul></td>
@@ -259,10 +261,10 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.CatchingProbe.exception">exception (pytest_xdocker.retry.CatchingProbe attribute)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.exec_">exec_() (pytest_xdocker.docker.DockerCommand method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.exec_">exec_() (pytest_xdocker.docker.DockerCommand method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.command.Command.execute">execute() (pytest_xdocker.command.Command method)</a>
 
       <ul>
@@ -271,8 +273,6 @@
         <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerRunCommand.execute">(pytest_xdocker.docker.DockerRunCommand method)</a>
 </li>
       </ul></li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerContainer.exposed_ip">exposed_ip (pytest_xdocker.docker.DockerContainer property)</a>
-</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerContainer.exposed_port">exposed_port (pytest_xdocker.docker.DockerContainer property)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerContainer.exposed_ports">exposed_ports (pytest_xdocker.docker.DockerContainer property)</a>
@@ -287,6 +287,8 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.lock.FileLock">FileLock (class in pytest_xdocker.lock)</a>
 </li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.compose.find_compose_files">find_compose_files() (in module pytest_xdocker.compose)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.from_lines">from_lines() (pytest_xdocker.docker.Dockerfile class method)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.from_path">from_path() (pytest_xdocker.docker.Dockerfile class method)</a>
@@ -299,6 +301,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.compose.ComposeServer.full_name">full_name() (pytest_xdocker.compose.ComposeServer method)</a>
+</li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.Calling.func">func (pytest_xdocker.retry.Calling attribute)</a>
 
       <ul>
@@ -362,6 +366,8 @@
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerImageId.identifier">identifier (pytest_xdocker.docker.DockerImageId attribute)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.docker.Dockerfile.image">image (pytest_xdocker.docker.Dockerfile attribute)</a>
+</li>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerContainer.ip">ip (pytest_xdocker.docker.DockerContainer property)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.lock.BaseLock.is_locked">is_locked (pytest_xdocker.lock.BaseLock property)</a>
 
@@ -437,6 +443,8 @@
 </li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.command">pytest_xdocker.command</a>
 </li>
+        <li><a href="pytest_xdocker.html#module-pytest_xdocker.compose">pytest_xdocker.compose</a>
+</li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.docker">pytest_xdocker.docker</a>
 </li>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.fixtures">pytest_xdocker.fixtures</a>
@@ -510,8 +518,12 @@
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.command.PositionalArg">PositionalArg (class in pytest_xdocker.command)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.process.ProcessServer.prepare_func">prepare_func() (pytest_xdocker.process.ProcessServer method)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.compose.ComposeServer.prepare_func">prepare_func() (pytest_xdocker.compose.ComposeServer method)</a>
+
+      <ul>
+        <li><a href="pytest_xdocker.html#pytest_xdocker.process.ProcessServer.prepare_func">(pytest_xdocker.process.ProcessServer method)</a>
 </li>
+      </ul></li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.Probe">Probe (class in pytest_xdocker.retry)</a>
 </li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.retry.ProbeResult">ProbeResult (class in pytest_xdocker.retry)</a>
@@ -557,6 +569,13 @@
 
       <ul>
         <li><a href="pytest_xdocker.html#module-pytest_xdocker.command">module</a>
+</li>
+      </ul></li>
+      <li>
+    pytest_xdocker.compose
+
+      <ul>
+        <li><a href="pytest_xdocker.html#module-pytest_xdocker.compose">module</a>
 </li>
       </ul></li>
       <li>
@@ -649,9 +668,11 @@
       </ul></li>
       <li><a href="pytest_xdocker.html#pytest_xdocker.process.Process.root_dir">root_dir (pytest_xdocker.process.Process property)</a>
 </li>
-      <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.run">run() (pytest_xdocker.docker.DockerCommand method)</a>
+      <li><a href="pytest_xdocker.html#pytest_xdocker.compose.ComposeServer.run">run() (pytest_xdocker.compose.ComposeServer method)</a>
 
       <ul>
+        <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerCommand.run">(pytest_xdocker.docker.DockerCommand method)</a>
+</li>
         <li><a href="pytest_xdocker.html#pytest_xdocker.docker.DockerComposeCommand.run">(pytest_xdocker.docker.DockerComposeCommand method)</a>
 </li>
         <li><a href="pytest_xdocker.html#pytest_xdocker.process.ProcessServer.run">(pytest_xdocker.process.ProcessServer method)</a>
