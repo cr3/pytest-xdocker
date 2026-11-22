@@ -7,7 +7,7 @@ authors = [
 ]
 readme = "README.rst"
 repository = "https://github.com/cr3/pytest-xdocker"
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 dependencies = [
     "attrs>=25.3.0",
     "netifaces2>=0.0.22",
@@ -53,7 +53,7 @@ build-backend = "hatchling.build"
 source = "vcs"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 120
 fix = true
 lint.select = [
