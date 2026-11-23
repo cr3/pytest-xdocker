@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.3.1.dev0+g562b0351c.d20261122 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.3.1.dev0+g562b0351c.d20261122
+                0.3.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -718,7 +718,7 @@ ie compose.yml then compose.override.yml.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerContainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.docker.</span></span><span class="sig-name descname"><span class="pre">DockerContainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inspect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Manager a docker container.</p>
 <dl class="py property">
@@ -759,6 +759,12 @@ ie compose.yml then compose.override.yml.</p>
 <dd class="field-odd"><p><strong>port</strong> – Port exposed to the host, defaults to port_binding.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytest_xdocker.docker.DockerContainer.inspect">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inspect</span></span><a class="headerlink" href="#pytest_xdocker.docker.DockerContainer.inspect" title="Permalink to this definition"></a></dt>
+<dd><p>Return the given inspect, or a fresh inspect of the container.</p>
 </dd></dl>
 
 <dl class="py property">
