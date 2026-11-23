@@ -169,7 +169,6 @@ def monitor_container(name, interval=1):
                 break
 
             sleep(interval)
-            container.inspect.refresh()
         else:
             break
 

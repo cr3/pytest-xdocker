@@ -340,7 +340,7 @@ def test_container_env():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.env["foo"] == "bar"
 
 
@@ -370,7 +370,7 @@ def test_container_env():
 def test_container_ip(network, networks, expected):
     """A container IP should come from the named network or the only one."""
     inspect = DockerInspect("name", {"NetworkSettings": {"Networks": networks}})
-    container = DockerContainer("name", inspect, network=network)
+    container = DockerContainer("name", network, inspect)
     assert container.ip == expected
 
 
@@ -384,7 +384,7 @@ def test_container_ip(network, networks, expected):
 def test_container_ip_error(networks):
     """A container IP should raise without a single network to choose."""
     inspect = DockerInspect("name", {"NetworkSettings": {"Networks": networks}})
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     with pytest.raises(AssertionError):
         container.ip  # noqa: B018
 
@@ -401,7 +401,7 @@ def test_container_exposed_port():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.exposed_port == 1
 
 
@@ -418,7 +418,7 @@ def test_container_exposed_port_error():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     with pytest.raises(AssertionError):
         container.exposed_port  # noqa: B018
 
@@ -436,7 +436,7 @@ def test_container_exposed_ports():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert_that(container.exposed_ports, contains_inanyorder(1, 2))
 
 
@@ -452,7 +452,7 @@ def test_container_port_binding():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.port_binding == 1
 
 
@@ -469,7 +469,7 @@ def test_container_port_binding_error():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     with pytest.raises(AssertionError):
         container.port_binding  # noqa: B018
 
@@ -487,7 +487,7 @@ def test_container_port_bindings():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert_that(container.port_bindings, contains_inanyorder(1, 2))
 
 
@@ -503,7 +503,7 @@ def test_container_port_bindings():
 def test_container_isrunning(data, isrunning):
     """A container isrunning should return State/Running."""
     inspect = DockerInspect("name", data)
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.isrunning == isrunning
 
 
@@ -524,7 +524,7 @@ def test_container_host_ip():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_ip(1) == ip
 
 
@@ -550,7 +550,7 @@ def test_container_host_ip_default():
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_ip() == ip
 
 
@@ -564,7 +564,7 @@ def test_container_host_ip_default():
 def test_container_host_ip_none(port):
     """A container host ip should return None when not found."""
     inspect = DockerInspect("name", {})
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_ip(port) is None
 
 
@@ -585,7 +585,7 @@ def test_container_host_port(unique):
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_port(1) == port
 
 
@@ -611,7 +611,7 @@ def test_container_host_port_default(unique):
             },
         },
     )
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_port() == port
 
 
@@ -625,8 +625,14 @@ def test_container_host_port_default(unique):
 def test_container_host_port_none(port):
     """A container host port should return None when not found."""
     inspect = DockerInspect("name", {})
-    container = DockerContainer("name", inspect)
+    container = DockerContainer("name", inspect=inspect)
     assert container.host_port(port) is None
+
+
+def test_container_inspect_fresh():
+    """A container without inspect should inspect again on each access."""
+    container = DockerContainer("name")
+    assert container.inspect is not container.inspect
 
 
 def test_inspect_data():

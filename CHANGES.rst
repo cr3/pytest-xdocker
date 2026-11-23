@@ -1,3 +1,8 @@
+Version 0.3.1
+-------------
+
+-   Fix DockerContainer caching a stale inspect.
+
 Version 0.3.0
 -------------
 

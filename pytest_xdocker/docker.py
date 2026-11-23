@@ -330,19 +330,24 @@ class DockerRemoveCommand(Command):
 class DockerContainer:
     """Manager a docker container."""
 
-    def __init__(self, name, inspect=None, network=None):
-        """Inint.
+    def __init__(self, name, network=None, inspect=None):
+        """Initialize a Docker container.
 
         :param name: Container name.
-        :param inspect: Optional `DockerInspect`, defaults to inspecting name.
         :param network: Optional network name used to resolve the IP.
+        :param inspect: Optional `DockerInspect` to cache calls to inspect.
         """
-        if inspect is None:
-            inspect = DockerInspect(name)
-
         self.name = name
-        self.inspect = inspect
         self.network = network
+        self._inspect = inspect
+
+    @property
+    def inspect(self):
+        """Return the given inspect, or a fresh inspect of the container."""
+        if self._inspect is None:
+            return DockerInspect(self.name)
+
+        return self._inspect
 
     def _port_to_int(self, port):
         pattern = r"(?P<port>\d+)/tcp"
