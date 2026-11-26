@@ -178,12 +178,15 @@ class Process(XProcess):
         """Get the process info based on the name."""
         return ProcessInfo(self.root_dir, name)
 
+    def restart_requested(self, name):
+        """Return whether --xrestart requests restarting the named process."""
+        xrestart = getattr(self.config.option, "xrestart", None)
+        return xrestart is not None and (xrestart == [] or name in xrestart)
+
     def ensure(self, name, prepare_func, restart=None):
         """Ensure the container is running or restarted if requested."""
         if restart is None:
-            xrestart = getattr(self.config.option, "xrestart", None)
-            if xrestart is not None:
-                restart = xrestart == [] or name in xrestart
+            restart = self.restart_requested(name)
 
         try:
             pid, log_path = super().ensure(name, prepare_func, restart)

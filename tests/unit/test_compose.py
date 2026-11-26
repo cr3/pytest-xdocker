@@ -36,7 +36,7 @@ def test_find_compose_files_not_found(tmp_path):
 
 
 def test_compose_server_prepare_func():
-    """Preparing a compose server should run the service by full name."""
+    """Preparing a compose server should start the service with up, with its project, env file and files."""
     server = ComposeServer("ready", project="p", env_file="env", compose_files=["a.yml", "b.yml"], timeout=1)
 
     result = server.prepare_func(Mock(basename="svc"))
@@ -47,12 +47,27 @@ def test_compose_server_prepare_func():
         "--env-file", "env",
         "--file", "a.yml",
         "--file", "b.yml",
-        "run",
-        "--name", "p-svc-1",
+        "up",
         "--build",
-        "--rm",
-        "--use-aliases",
         "svc",
     ]
     assert result.pattern == "ready"
     assert result.timeout == 1
+
+
+def test_compose_server_prepare_func_recreate():
+    """Preparing a compose server to restart should recreate only the service."""
+    server = ComposeServer("ready", project="p")
+    server.recreate = True
+
+    result = server.prepare_func(Mock(basename="svc"))
+
+    assert list(result.args) == [
+        *xdocker.compose(),
+        "--project-name", "p",
+        "up",
+        "--build",
+        "--force-recreate",
+        "--no-deps",
+        "svc",
+    ]
