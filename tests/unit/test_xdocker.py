@@ -145,3 +145,23 @@ def test_main_detach(capsys):
 
     captured = capsys.readouterr()
     assert "Cannot pass --detach" in captured.err
+
+
+@patch("pytest_xdocker.xdocker.DockerContainer")
+@patch("pytest_xdocker.xdocker.check_call")
+def test_monitor_container_since(cc_mock, dc_mock, unique):
+    """The first follow should read the whole log, the next ones only 1m."""
+    name = unique("text")
+
+    restarted = Mock(DockerContainer)
+    restarted.status = "running"
+    restarted.isrunning = True
+    stopped = Mock(DockerContainer)
+    stopped.status = None
+    dc_mock.side_effect = [restarted, stopped]
+
+    monitor_container(name, interval=0)
+
+    first, second = (list(c.args[0]) for c in cc_mock.call_args_list)
+    assert "--since" not in first
+    assert second[second.index("--since") + 1] == "1m"

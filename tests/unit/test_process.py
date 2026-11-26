@@ -3,6 +3,7 @@
 import logging
 import platform
 from typing import ClassVar
+from unittest.mock import Mock
 
 import pytest
 from hamcrest import (
@@ -67,3 +68,20 @@ def test_process_preparation_failure(tmp_path, unique):
     process = Process(config=config)
     with pytest.raises(Expected):
         process.ensure(unique("text"), prepare_func)
+
+
+@pytest.mark.parametrize(
+    "xrestart, expected",
+    [
+        (None, False),
+        ([], True),
+        (["svc"], True),
+        (["other"], False),
+    ],
+)
+def test_process_restart_requested(tmp_path, xrestart, expected):
+    """Restart should be requested by --xrestart alone or with the name."""
+    config = ProcessConfig(tmp_path)
+    config.option = Mock(xrestart=xrestart)
+
+    assert Process(config=config).restart_requested("svc") is expected

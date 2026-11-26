@@ -142,26 +142,31 @@ def monitor_container(name, interval=1):
     :param name: Name of the docker container to monitor.
     :param interval: Check the container status every interval seconds.
     """
+    # The first follow reads the whole log: the container may have been
+    # running for a while, e.g. a compose service already started as a
+    # dependency of another service, so its ready line can be old.
+    since = None
     while True:
         try:
-            # The "since 1m" is to avoid getting the whole log from the
-            # beginning when retrying after a failure because that would make
-            # the xprocess.log file grow bigger and bigger everytime.
-            # The first time it is called, the container has just been started
-            # with --detach so its age will be less than 1 minute making this
-            # equivalent to reading "from the beginning", further follows don't
-            # need to go from begining, logs already be there.
-            # When a failure occurs :
-            # - It can be a hick-up and we lost 2 seconds of logs, see
-            #   https://github.com/moby/moby/issues/41820
-            # - If the container was stopped for a while and just restard there
-            #   won't be older logs anyway
-            # So, 1 minute is conservative.
-            check_call(docker.logs(name).with_follow().with_optionals("--since", "1m"))  # noqa: S603
+            logs = docker.logs(name).with_follow()
+            if since:
+                logs = logs.with_optionals("--since", since)
+            check_call(logs)  # noqa: S603
         except CalledProcessError:
             log.exception("--follow %s failed", name)
         except KeyboardInterrupt:
             docker_remove(name)
+
+        # The "since 1m" is to avoid getting the whole log from the beginning
+        # when retrying after a failure because that would make the
+        # xprocess.log file grow bigger and bigger everytime. When a failure
+        # occurs:
+        # - It can be a hick-up and we lost 2 seconds of logs, see
+        #   https://github.com/moby/moby/issues/41820
+        # - If the container was stopped for a while and just restarted there
+        #   won't be older logs anyway
+        # So, 1 minute is conservative.
+        since = "1m"
 
         container = DockerContainer(name)
         while container.status is not None:

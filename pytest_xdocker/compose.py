@@ -45,6 +45,7 @@ class ComposeServer(ProcessServer):
         self.env_file = env_file
         self.compose_files = compose_files
         self.timeout = timeout
+        self.recreate = False
 
     def __repr__(self):
         return f"{self.__class__.__name__}(pattern={self.pattern!r}, project={self.project!r})"
@@ -61,18 +62,17 @@ class ComposeServer(ProcessServer):
         for file in self.compose_files or []:
             compose = compose.with_file(file)
 
-        command = (
-            compose.run(controldir.basename)
-            .with_name(self.full_name(controldir.basename))
-            .with_build()
-            .with_remove()
-            .with_optionals("--use-aliases")
-        )
+        command = compose.up(controldir.basename).with_build()
+        if self.recreate:
+            command = command.with_force_recreate().with_optionals("--no-deps")
 
         return ProcessData(self.pattern, command, timeout=self.timeout)
 
     @contextmanager
     def run(self, name, restart=None):
         """Run the compose service and yield its `DockerContainer`."""
+        if restart is None:
+            restart = self.process.restart_requested(name)
+        self.recreate = bool(restart)
         with super().run(name, restart):
             yield DockerContainer(self.full_name(name), network=f"{self.project}_default")

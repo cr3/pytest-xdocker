@@ -1,3 +1,9 @@
+Version 0.4.0
+-------------
+
+-   Use compose up instead of compose run.
+-   Follow the whole container log the first time in xdocker.
+
 Version 0.3.1
 -------------
 
