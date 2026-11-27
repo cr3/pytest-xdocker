@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.4.0 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.4.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -442,14 +442,15 @@ and those created as .cmd with Python.</p>
 <p>Docker compose server.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytest_xdocker.compose.ComposeServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.compose.</span></span><span class="sig-name descname"><span class="pre">ComposeServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compose_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.compose.ComposeServer" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytest_xdocker.compose.</span></span><span class="sig-name descname"><span class="pre">ComposeServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compose_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.compose.ComposeServer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pytest_xdocker.process.ProcessServer" title="pytest_xdocker.process.ProcessServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessServer</span></code></a></p>
 <p>Server for a docker compose service.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pattern</strong> – Pattern in the service output when it is ready.</p></li>
-<li><p><strong>project</strong> – Compose project name.</p></li>
+<li><p><strong>project</strong> – Compose project name, defaults to the name of the root
+directory so tests from different repos don’t collide on a host.</p></li>
 <li><p><strong>env_file</strong> – Optional compose env file.</p></li>
 <li><p><strong>compose_files</strong> – Optional compose files, see <cite>find_compose_files</cite>.</p></li>
 <li><p><strong>timeout</strong> – Seconds to wait for the pattern.</p></li>
