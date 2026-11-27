@@ -71,3 +71,10 @@ def test_compose_server_prepare_func_recreate():
         "--no-deps",
         "svc",
     ]
+
+
+def test_compose_server_project_default(pytestconfig):
+    """A compose server should default its project to the root directory name."""
+    server = ComposeServer("ready", process=Mock(config=pytestconfig))
+
+    assert server.project == "pytest-xdocker"

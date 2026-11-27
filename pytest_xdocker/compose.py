@@ -1,10 +1,11 @@
 """Docker compose server."""
 
+import re
 from contextlib import contextmanager
 from pathlib import Path
 
 from pytest_xdocker.docker import DockerContainer
-from pytest_xdocker.process import ProcessData, ProcessServer
+from pytest_xdocker.process import ProcessData, ProcessServer, get_root_dir
 from pytest_xdocker.xdocker import xdocker
 
 COMPOSE_FILENAMES = ["docker-compose.yml", "compose.yaml", "compose.yml"]
@@ -31,17 +32,21 @@ class ComposeServer(ProcessServer):
     """Server for a docker compose service.
 
     :param pattern: Pattern in the service output when it is ready.
-    :param project: Compose project name.
+    :param project: Compose project name, defaults to the name of the root
+        directory so tests from different repos don't collide on a host.
     :param env_file: Optional compose env file.
     :param compose_files: Optional compose files, see `find_compose_files`.
     :param timeout: Seconds to wait for the pattern.
     """
 
-    def __init__(self, pattern, project="test", env_file=None, compose_files=None, timeout=180, **kwargs):
+    def __init__(self, pattern, project=None, env_file=None, compose_files=None, timeout=180, **kwargs):
         """Init."""
         super().__init__(**kwargs)
         self.pattern = pattern
-        self.project = project
+        if project is None:
+            project = get_root_dir(self.process.config).name
+        # Normalize like compose does, so container and network names match.
+        self.project = re.sub(r"[^-_a-z0-9]", "", project.lower()).lstrip("-_")
         self.env_file = env_file
         self.compose_files = compose_files
         self.timeout = timeout

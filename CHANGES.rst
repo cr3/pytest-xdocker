@@ -1,3 +1,8 @@
+Version 0.4.1
+-------------
+
+-   Default ComposeServer project to the root directory name.
+
 Version 0.4.0
 -------------
 
