@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest_xdocker package &mdash; pytest-xdocker 0.4.1 documentation</title>
+  <title>pytest_xdocker package &mdash; pytest-xdocker 0.4.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
             pytest-xdocker
           </a>
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -449,14 +449,20 @@ and those created as .cmd with Python.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pattern</strong> – Pattern in the service output when it is ready.</p></li>
-<li><p><strong>project</strong> – Compose project name, defaults to the name of the root
-directory so tests from different repos don’t collide on a host.</p></li>
+<li><p><strong>project</strong> – Compose project name, defaults to the one compose picks
+from COMPOSE_PROJECT_NAME, the compose files or their directory.</p></li>
 <li><p><strong>env_file</strong> – Optional compose env file.</p></li>
 <li><p><strong>compose_files</strong> – Optional compose files, see <cite>find_compose_files</cite>.</p></li>
 <li><p><strong>timeout</strong> – Seconds to wait for the pattern.</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytest_xdocker.compose.ComposeServer.compose">
+<span class="sig-name descname"><span class="pre">compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DockerCommand(['/home/runner/work/pytest-xdocker/pytest-xdocker/.venv/bin/xdocker'])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.compose.ComposeServer.compose" title="Permalink to this definition"></a></dt>
+<dd><p>Return the compose command with the project, env file and files.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pytest_xdocker.compose.ComposeServer.full_name">
 <span class="sig-name descname"><span class="pre">full_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytest_xdocker.compose.ComposeServer.full_name" title="Permalink to this definition"></a></dt>
