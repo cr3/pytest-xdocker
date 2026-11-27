@@ -1,3 +1,8 @@
+Version 0.4.2
+-------------
+
+-   Default ComposeServer project to the one compose picks.
+
 Version 0.4.1
 -------------
 

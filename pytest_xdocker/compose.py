@@ -1,11 +1,11 @@
 """Docker compose server."""
 
-import re
+import json
 from contextlib import contextmanager
 from pathlib import Path
 
-from pytest_xdocker.docker import DockerContainer
-from pytest_xdocker.process import ProcessData, ProcessServer, get_root_dir
+from pytest_xdocker.docker import DockerContainer, docker
+from pytest_xdocker.process import ProcessData, ProcessServer
 from pytest_xdocker.xdocker import xdocker
 
 COMPOSE_FILENAMES = ["docker-compose.yml", "compose.yaml", "compose.yml"]
@@ -32,8 +32,8 @@ class ComposeServer(ProcessServer):
     """Server for a docker compose service.
 
     :param pattern: Pattern in the service output when it is ready.
-    :param project: Compose project name, defaults to the name of the root
-        directory so tests from different repos don't collide on a host.
+    :param project: Compose project name, defaults to the one compose picks
+        from COMPOSE_PROJECT_NAME, the compose files or their directory.
     :param env_file: Optional compose env file.
     :param compose_files: Optional compose files, see `find_compose_files`.
     :param timeout: Seconds to wait for the pattern.
@@ -43,10 +43,7 @@ class ComposeServer(ProcessServer):
         """Init."""
         super().__init__(**kwargs)
         self.pattern = pattern
-        if project is None:
-            project = get_root_dir(self.process.config).name
-        # Normalize like compose does, so container and network names match.
-        self.project = re.sub(r"[^-_a-z0-9]", "", project.lower()).lstrip("-_")
+        self.project = project
         self.env_file = env_file
         self.compose_files = compose_files
         self.timeout = timeout
@@ -59,15 +56,21 @@ class ComposeServer(ProcessServer):
         """Return the container name of the service."""
         return f"{self.project}-{name}-1"
 
-    def prepare_func(self, controldir):
-        """Prepare the function to run the compose service."""
-        compose = xdocker.compose().with_project_name(self.project)
+    def compose(self, base=xdocker):
+        """Return the compose command with the project, env file and files."""
+        compose = base.compose()
+        if self.project:
+            compose = compose.with_project_name(self.project)
         if self.env_file:
             compose = compose.with_env_file(self.env_file)
         for file in self.compose_files or []:
             compose = compose.with_file(file)
 
-        command = compose.up(controldir.basename).with_build()
+        return compose
+
+    def prepare_func(self, controldir):
+        """Prepare the function to run the compose service."""
+        command = self.compose().up(controldir.basename).with_build()
         if self.recreate:
             command = command.with_force_recreate().with_optionals("--no-deps")
 
@@ -80,4 +83,8 @@ class ComposeServer(ProcessServer):
             restart = self.process.restart_requested(name)
         self.recreate = bool(restart)
         with super().run(name, restart):
+            if self.project is None:
+                # xdocker only supports run and up.
+                config = self.compose(docker).with_positionals("config", "--format", "json").execute()
+                self.project = json.loads(config)["name"]
             yield DockerContainer(self.full_name(name), network=f"{self.project}_default")
